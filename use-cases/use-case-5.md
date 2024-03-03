@@ -1,10 +1,10 @@
-# USE CASE: 4 Produce a report on the TOP N Populated countries in the world
+# USE CASE: 1 Produce a report on TOP N Populated countries in continents
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As the *Data Analyst* we want to *produce a report on the TOP N Populated countries in the world* to allow *easy access to this population information.*
+As the *Organisation* we want to *produce a report on the TOP N Populated countries in continents* to allow *easy access to this population information.*
 
 ### Scope
 
@@ -28,16 +28,16 @@ No report is produced.
 
 ### Primary Actor
 
-Data Analyst.
+The Data Analyst.
 
 ### Trigger
 
-A request for Country Population information is by the Organisation.
+A request for Top N Countries Population by continents information is by the Data Analyst.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Data Analyst request Top N Country Population Report.
-2. Data Analyst able to extract report of Top N Countries sorted from largest to smallest population.
+1. Data Analyst request Top N Countries In Continents Population Report.
+2. Data Analyst able to extract report of Top N Countries grouped by regions sorted from largest to smallest population.
 
 
 ## EXTENSIONS
