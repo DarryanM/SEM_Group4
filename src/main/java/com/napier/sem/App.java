@@ -1,4 +1,4 @@
 package com.napier.sem;
 
-public class app {
+public class App {
 }
