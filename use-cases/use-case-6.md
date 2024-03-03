@@ -1,4 +1,4 @@
-# USE CASE: 1 Produce a report on the TOP N Populated countries in regions
+# USE CASE: 6 Produce a Report on the TOP N Populated countries in a region where N value is provided.
 
 ## CHARACTERISTIC INFORMATION
 
@@ -8,7 +8,7 @@ As the *Data Analyst* we want to *produce a report on the TOP N Populated countr
 
 ### Scope
 
-Data Analyst.
+Organisation.
 
 ### Level
 
@@ -16,11 +16,11 @@ Primary task.
 
 ### Preconditions
 
-We know the role.  Database contains current world population data.
+We know the value. Database contains current world population data.
 
 ### Success End Condition
 
-A report is available for the Data Analyst.
+A report is available for the Organisation.
 
 ### Failed End Condition
 
@@ -32,13 +32,13 @@ The Data Analyst.
 
 ### Trigger
 
-A request for Top N Countries Population by regions information is by the Data Analyst.
+A request for Top N Countries Population by regions information is sent to Research Department.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Data Analyst request Top N Countries In Regions Population Report.
+1. Organisation request Top N countries population information by regions.
 2. Data Analyst able to extract report of Top N Countries grouped by regions sorted from largest to smallest population.
-
+3. Data Analyst provides report to organisation.
 
 ## EXTENSIONS
 

@@ -1,4 +1,4 @@
-# USE CASE: 4 Produce a report on the TOP N Populated countries in the world
+# USE CASE: 4 Produce a report on the TOP N Populated countries in the world where N value is provided.
 
 ## CHARACTERISTIC INFORMATION
 
@@ -8,7 +8,7 @@ As the *Data Analyst* we want to *produce a report on the TOP N Populated countr
 
 ### Scope
 
-Data Analyst.
+Organisation.
 
 ### Level
 
@@ -16,11 +16,11 @@ Primary task.
 
 ### Preconditions
 
-We know the role. Database contains current world population data.
+We know the value. Database contains current world population data.
 
 ### Success End Condition
 
-A report is available for the Data Analyst.
+A report is available for the Organisation.
 
 ### Failed End Condition
 
@@ -32,13 +32,13 @@ Data Analyst.
 
 ### Trigger
 
-A request for Country Population information is by the Organisation.
+A request for Top N Countries Population in the world information is sent to Research Department.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Data Analyst request Top N Country Population Report.
+1. Organisation request Top N Country Population Report.
 2. Data Analyst able to extract report of Top N Countries sorted from largest to smallest population.
-
+3. Data Analyst provides report to organisation.
 
 ## EXTENSIONS
 
