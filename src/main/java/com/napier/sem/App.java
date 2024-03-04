@@ -203,6 +203,10 @@ public class App {
             System.out.println(popCount);
         }
     }
+
+    /**
+     * Gets All the Cities in a Country.
+     */
     public ArrayList<City> getCityPopulation10()
     {
         try
@@ -239,11 +243,11 @@ public class App {
             return null;
         }
     }
+
     /**
-     * Prints a list of Populations.
+     * Prints a list of all the Cities in a country.
 
      */
-
 
     public void printCityPopulation10(ArrayList<City> citypop10)
     {
