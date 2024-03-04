@@ -5,7 +5,7 @@
 ### Goal in Context
 
 As a *Data Analyst* I want to *produce a report on all the cities in a district organised by largest to smallest population*
-to allow easy access to this population information
+to allow easy access to this population information.
 
 ### Scope
 
