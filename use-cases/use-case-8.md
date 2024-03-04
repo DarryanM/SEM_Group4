@@ -16,7 +16,7 @@ As the *# USE CASE: 8 Produce a report on All the cities in a continent organise
 
 ### Goal in Context
 
-As the *Data Analyst* we want to *produce a report on the All the cities in a continent organised by largest to smallest population* to allow *easy access to this population information.*
+As a *Data Analyst* I want to *produce a report on the All the cities in a continent organised by largest to smallest population* to allow *easy access to this population information.*
 
 ### Scope
 
