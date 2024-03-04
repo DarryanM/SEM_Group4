@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As the *Data Analyst* we want to *produce a report on All the countries in a Continent organised by largest population to smallest.* to allow *easy access to this population information.*
+As the *Data Analyst* I want to *produce a report on All the countries in a Continent organised by largest population to smallest.* to allow *easy access to this population information.*
 
 ### Scope
 
