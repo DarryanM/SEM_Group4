@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As the *Data Analyst* we want to *produce a report on the top "N" populated cities in the world, with "N" provided*, to allow easy access to this population information
+As a *Data Analyst* I want to *produce a report on the top "N" populated cities in the world, with "N" provided*, to allow easy access to this population information.
 
 ### Scope
 
