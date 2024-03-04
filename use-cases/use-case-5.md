@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As the *Organisation* we want to *produce a report on the TOP N Populated countries in continents* to allow *easy access to this population information.*
+As a *Data Analyst* I want to *produce a report on the TOP N Populated countries in continents* to allow *easy access to this population information.*__
 
 ### Scope
 
