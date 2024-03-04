@@ -88,8 +88,7 @@ public class App {
             String strSelect =
                     "SELECT name, continent, Region, population "
                             + "FROM country "
-                            + "Order By population DESC "
-                            + "Limit 10";
+                            + "Order By population DESC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract Population information
