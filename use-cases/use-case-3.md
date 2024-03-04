@@ -8,7 +8,7 @@ As the *Data Analyst* we want to *produce a report on All the countries in a reg
 
 ### Scope
 
-Company.
+Organisation.
 
 ### Level
 
