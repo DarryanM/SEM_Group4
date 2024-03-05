@@ -18,10 +18,10 @@ public class App {
         //Display Results
         a.printCountryPopulation(population);
 
-        // Extract City Population
+        // Extract City Population in the world
         ArrayList<City> cityPop7 = a.getCityPop();
 
-        //Display Results
+        //Display Results for City population in the world
         a.printCityPop(cityPop7);
 
         // Extract city population information
@@ -47,6 +47,12 @@ public class App {
 
         //Display Continent Population Results
         a.printContinentPopulation(population2);
+
+        // Extract City Population in a continent
+        ArrayList<City> cityPop8 = a.getCityPopconti();
+
+        //Display Results for city population in a continent
+        a.printCityPop8(cityPop8);
 
         // Disconnect from database
         a.disconnect();
@@ -168,7 +174,10 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT ct.countryCode, c.name as Country, ct.name As  City, ct.district, ct.population from city as ct Join country as c ON ct.CountryCode = c.code  Order by ct.population desc  limit 20 ";
+                    "SELECT ct.countryCode, c.name as Country, ct.name As  City, ct.district, ct.population " +
+                            "from city as ct Join country as c ON ct.CountryCode = c.code  " +
+                            "Order by ct.population desc ";
+
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -428,5 +437,62 @@ public class App {
             System.out.println(popCount);
         }
     }
+
+    /**
+     * Gets All the cities in a continent.
+     * @return A list of all Population sorted in descending order, or null if there is an error.
+     */
+
+    public ArrayList<City> getCityPopconti() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ct.countryCode, c.name As Country, ct.name As City, ct.population, c.continent " +
+                            " from city as ct Join country as c ON ct.CountryCode = c.code " +
+                            "Order by c.continent, ct.population desc ";
+
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> cityPop8 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.population = rset.getInt("population");
+                pop.name = rset.getString("city");
+                pop.countryCode = rset.getString("countryCode");
+                pop.country = rset.getString("Country");
+                pop.continent = rset.getString("Continent");
+                cityPop8.add(pop);
+            }
+            return cityPop8;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the Cities in a continent sorted by largest to smallest population.
+     *
+     * @param CityPop8 The list of All Cities in a continent Population to print.
+     */
+    public void printCityPop8(ArrayList<City> CityPop8) {
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "All the Cities in a continent organised by largest population to smallest."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s %-20s %-20s %-30s %10s", "Country Code", "city", "Country", "Continent", "Population"));
+        // Loop over all Retrieved Populations in the list
+        for (City pop : CityPop8) {
+
+            String popCount = String.format("%-20s %-20s %-20s %-30s %10s", pop.countryCode, pop.name, pop.country, pop.continent, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
 
 }
