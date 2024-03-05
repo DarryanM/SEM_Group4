@@ -269,7 +269,7 @@ public class App {
             // Create an SQL statement
             Statement stmt = con.createStatement();
             // Create string for SQL statement
-            String strSelect = "SELECT name, continent, Region, population "
+            String strSelect = "SELECT name, continent, code, capital, Region, population "
                     + "FROM country "
                     + "Order By population DESC "
                     + "Limit 10";
@@ -281,6 +281,8 @@ public class App {
             while (rset.next()) {
                 Country pop = new Country();
                 pop.population = rset.getInt("country.population");
+                pop.code = rset.getString("country.Code");
+                pop.capital = rset.getInt("country.Capital");
                 pop.name = rset.getString("country.Name");
                 pop.continent = rset.getString("country.continent");
                 pop.region = rset.getString("country.region");
@@ -302,13 +304,13 @@ public class App {
     public void printTopNCountryPopulation(ArrayList<Country> topPopulation) {
         // Print header
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-20s ", "All the Top N countries in the world."));
+        System.out.println(String.format("%-20s ", "All the Top N countries in the world with N provided by user."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-20s %-20s %-30s %10s", "Country", "Continent", "Region", "Population"));
+        System.out.println(String.format("%-10s %10s %-50s %-30s %-30s %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
         // Loop over all Retrieved Populations in the list
         for (Country pop : topPopulation) {
 
-            String popCount = String.format("%-20s %-20s %-30s %10s", pop.name, pop.continent, pop.region, pop.population);
+            String popCount = String.format("%-10s %10s %-50s %-30s %-30s %-30s", pop.code, pop.population, pop.name, pop.capital, pop.continent, pop.region);
             System.out.println(popCount);
         }
     }
