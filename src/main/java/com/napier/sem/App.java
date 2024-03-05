@@ -162,7 +162,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT countryCode, c.name as Country, ct.name As  City, district, ct.population from country as c Join city as ct ON c.code =ct.CountryCode Order by ct.population desc  limit 20 ";
+                    "SELECT ct.countryCode, c.name as Country, ct.name As  City, ct.district, ct.population from city as ct Join country as c ON ct.CountryCode = c.code  Order by ct.population desc  limit 20 ";
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -170,10 +170,10 @@ public class App {
             ArrayList<City> cityPop7 = new ArrayList<City>();
             while (rset.next()) {
                 City pop = new City();
-                pop.population = rset.getInt("city.population");
-                pop.name = rset.getString("city.Name");
-                pop.district = rset.getString("city.district");
-                pop.countryCode = rset.getString("city.countryCode");
+                pop.population = rset.getInt("population");
+                pop.name = rset.getString("city");
+                pop.district = rset.getString("district");
+                pop.countryCode = rset.getString("countryCode");
                 pop.country = rset.getString("Country");
                 cityPop7.add(pop);
             }
@@ -195,7 +195,7 @@ public class App {
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "All the Cities in the world organised by largest population to smallest."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-20s %-20s %-20s %-30s %10s", "Country Code", "Name", "Country", "District", "Population"));
+        System.out.println(String.format("%-20s %-20s %-20s %-30s %10s", "Country Code", "city", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
         for (City pop : CityPop7) {
 
