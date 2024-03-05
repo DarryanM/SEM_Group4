@@ -14,4 +14,5 @@ public class Country {
 
     public int capital;
     public String code;
+    public int row_num;
 }
