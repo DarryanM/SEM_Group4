@@ -60,6 +60,12 @@ public class App {
         //Display Results
         a.printTopNCountriesInContPopulation(population5);
 
+        // Extract district population information
+        ArrayList<City> districtPopulation11 = a.getDistrictPopulation();
+
+        // Display district population results
+        a.printDistrictPopulation(districtPopulation11);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -559,5 +565,57 @@ public class App {
         }
 
     }
+
+    /**
+     * Cities in a district from largest to smallest population
+     * Gets the population of all cities in a district.
+     * @return A list of all cities sorted by population in descending order, or null if there is an error.
+     */
+    public ArrayList<City> getDistrictPopulation() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.name AS city, country.name AS country, city.district, city.population " +
+                            "FROM city INNER JOIN country ON city.countrycode = country.code " +
+                            "ORDER BY district ASC, population DESC ";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> districtpopulation11 = new ArrayList<>();
+            while (rset.next()) {
+                City district = new City();
+                district.population = rset.getInt("population");
+                district.name = rset.getString("city");
+                district.district = rset.getString("district");
+                district.country=rset.getString("country");
+                districtpopulation11.add(district);
+            }
+            return districtpopulation11;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get district population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints the list of cities in a district from largest to smallest population"
+     *
+     */
+    public void printDistrictPopulation(ArrayList<City> districtpopulation11) {
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("Cities in a district from largest to smallest population"));
+        System.out.println(String.format("%-20s %-30s %-20s %-30s", "City Name", "Country", "District", "Population"));
+        // Loop over all retrieved populations in the list
+        for (City district : districtpopulation11) {
+            String popCount = String.format("%-20s %-30s %-20s %-30s", district.name, district.country, district.district, district.population);
+            System.out.println(popCount);
+        }
+    }
+
 
 }
