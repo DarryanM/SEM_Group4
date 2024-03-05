@@ -19,10 +19,10 @@ public class App {
         a.printCountryPopulation(population);
 
         // Extract City Population
-        ArrayList<City> cityPop = a.getCityPop();
+        ArrayList<City> cityPop7 = a.getCityPop();
 
         //Display Results
-        a.printCityPop(cityPop);
+        a.printCityPop(cityPop7);
 
         // Extract city population information
         ArrayList<City> citypop10 = a.getCityPopulation10();
@@ -162,23 +162,22 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT name, countryCode, district, population "
-                            + "FROM city "
-                            + "Order By population DESC "
-                            + "Limit 10";
+                    "SELECT countryCode, c.name as Country, ct.name As  City, district, ct.population from country as c Join city as ct ON c.code =ct.CountryCode Order by ct.population desc  limit 20 ";
+
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract Population information
-            ArrayList<City> cityPop = new ArrayList<City>();
+            ArrayList<City> cityPop7 = new ArrayList<City>();
             while (rset.next()) {
                 City pop = new City();
                 pop.population = rset.getInt("city.population");
                 pop.name = rset.getString("city.Name");
                 pop.district = rset.getString("city.district");
                 pop.countryCode = rset.getString("city.countryCode");
-                cityPop.add(pop);
+                pop.country = rset.getString("Country");
+                cityPop7.add(pop);
             }
-            return cityPop;
+            return cityPop7;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Population details");
@@ -189,18 +188,18 @@ public class App {
     /**
      * Prints a list of All the Cities in the World.
      *
-     * @param CityPop The list of All Cities in the world Population to print.
+     * @param CityPop7 The list of All Cities in the world Population to print.
      */
-    public void printCityPop(ArrayList<City> CityPop) {
+    public void printCityPop(ArrayList<City> CityPop7) {
         // Print header
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "All the Cities in the world organised by largest population to smallest."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-20s %-20s %-30s %10s", "Name", "Country Code", "District", "Population"));
+        System.out.println(String.format("%-20s %-20s %-20s %-30s %10s", "Country Code", "Name", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
-        for (City pop : CityPop) {
+        for (City pop : CityPop7) {
 
-            String popCount = String.format("%-20s %-20s %-30s %10s", pop.name, pop.countryCode, pop.district, pop.population);
+            String popCount = String.format("%-20s %-20s %-20s %-30s %10s", pop.countryCode, pop.name, pop.countryCode, pop.district, pop.population);
             System.out.println(popCount);
         }
     }
