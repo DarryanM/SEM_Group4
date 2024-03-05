@@ -55,10 +55,10 @@ public class App {
         a.printCityPop8(cityPop8);
 
         // Extract Top N Countries in a Continent
-        ArrayList<Country> topNCountriesContPop = a.getTopNCountriesInContPopulation();
+        ArrayList<Country> population5 = a.getTopNCountriesInContPopulation();
 
         //Display Results
-        a.printTopNCountriesInContPopulation(topNCountriesContPop);
+        a.printTopNCountriesInContPopulation(population5);
 
         // Disconnect from database
         a.disconnect();
@@ -513,9 +513,9 @@ public class App {
             // Create string for SQL statement
             String strSelect =
 
-                    "with country as (select name, continent, population, row_number() over " +
+                    "with country as (select name, code, capital, region, continent, population, row_number() over " +
                             "(partition by continent order by population desc, continent desc) as row_num from country) " +
-                            "select row_num, name, continent, population from country where row_num <=3";
+                            "select row_num, name, code, capital, region, continent, population from country where row_num <=3";
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -524,12 +524,12 @@ public class App {
             while (rset.next()) {
                 Country pop = new Country();
                 pop.population = rset.getInt("country.population");
-                pop.name = rset.getString("country.Name");
                 pop.code = rset.getString("country.Code");
                 pop.capital = rset.getInt("country.Capital");
+                pop.name = rset.getString("country.Name");
                 pop.continent = rset.getString("country.continent");
-                pop.row_num = rset.getInt("country.row_num");
                 pop.region = rset.getString("country.region");
+                pop.row_num = rset.getInt("country.row_num");
                 topNCountriesContPop.add(pop);
             }
             return topNCountriesContPop;
@@ -543,18 +543,18 @@ public class App {
     /**
      * Prints a list of Top N Countries Populations in a Continent.
      *
-     * @param topNCountriesContPop The list of Top M Countries in a Continent to print.
+     * @param topNCountriesContPop The list of Top N Countries in a Continent to print.
      */
     public void printTopNCountriesInContPopulation(ArrayList<Country> topNCountriesContPop) {
         // Print header
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "All the TOP N countries in a Continent with N value provided by user."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%10s %10s %-50s %-30s %-30s %-30s", "row_num", "Code", "Population", "Country", "Capital", "Continent", "Region"));
+        System.out.println(String.format("-%10s %-10s %10s %-50s %-30s %-30s %-30s", "row_num", "Code", "Population", "Country", "Capital", "Continent", "Region"));
         // Loop over all Retrieved Populations in the list
         for (Country pop : topNCountriesContPop) {
 
-            String popCount = String.format("%10s %10s %-50s %-30s %-30s %-30s", pop.row_num,  pop.code, pop.population, pop.name, pop.capital, pop.continent, pop.region);
+            String popCount = String.format("-%10s %-10s %10s %-50s %-30s %-30s %-30s",pop.row_num, pop.code, pop.population, pop.name, pop.capital, pop.continent, pop.region);
             System.out.println(popCount);
         }
 
