@@ -322,7 +322,7 @@ public class App {
             // Create string for SQL statement
             String strSelect =
 
-                    "WITH city1 as (select city.name as name, country.continent as continent, city.population as population, RANK () " +
+                    "WITH city1 as (select city.name as name, country.name as country, district, country.continent as continent, city.population as population, RANK () " +
                             "OVER(PARTITION BY continent ORDER BY population DESC) row_num " +
                             "FROM city inner join country on city.countrycode = country.code) " +
                             "SELECT * FROM city1  WHERE row_num <=3";
@@ -335,12 +335,16 @@ public class App {
                 City pop = new City();
                 pop.population = rset.getInt("population");
                 pop.name = rset.getString("Name");
+                pop.country = rset.getString("Country");
                 pop.continent = rset.getString("continent");
+                pop.district = rset.getString("district");
                 pop.row_num = rset.getInt("row_num");
                 nCityPop.add(pop);
             }
             return nCityPop;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Population details");
             return null;
@@ -356,11 +360,11 @@ public class App {
         // Print header
         System.out.println(String.format("%-20s ", "The top N populated cities in a continent where N is provided by the user."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%10s %-30s %-30s %10s", "row_num", "Country", "Continent", "Population"));
+        System.out.println(String.format("%10s %-30s %-30s %-30s %-30s %10s", "row_num", "City", "Country",  "District", "Continent", "Population"));
         // Loop over all Retrieved Populations in the list
         for (City pop : nCityPop) {
 
-            String popCount = String.format("%10s %-30s %-30s %10s", pop.row_num, pop.name, pop.continent, pop.population);
+            String popCount = String.format("%10s %-30s %-30s %-30s %-30s %10s", pop.row_num, pop.name,pop.country, pop.district, pop.continent, pop.population);
             System.out.println(popCount);
         }
     }
