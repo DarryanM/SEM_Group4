@@ -214,8 +214,7 @@ public class App {
                     "SELECT city.name AS city, city.population, city.district, country.name AS country " +
                             "FROM city " +
                             "INNER JOIN country ON city.countrycode = country.code " +
-                            "ORDER BY country ASC, population DESC " +
-                            "LIMIT 30";
+                            "ORDER BY country ASC, population DESC ";
 
 
             // Execute SQL statement
