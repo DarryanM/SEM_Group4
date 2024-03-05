@@ -108,7 +108,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT name, continent, Region, population "
+                    "SELECT code, name, continent, region, capital, population "
                             + "FROM country "
                             + "Order By population DESC";
             // Execute SQL statement
@@ -120,7 +120,9 @@ public class App {
                 pop.population = rset.getInt("country.population");
                 pop.name = rset.getString("country.Name");
                 pop.continent = rset.getString("country.continent");
+                pop.capital = rset.getInt("country.capital");
                 pop.region = rset.getString("country.region");
+                pop.code = rset.getString("country.code");
                 population.add(pop);
             }
             return population;
@@ -140,11 +142,11 @@ public class App {
         // Print header
         System.out.println(String.format("%-20s ", "All the countries in the world organised by largest population to smallest."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-20s %-20s %-30s %10s", "Country", "Continent", "Region", "Population"));
+        System.out.println(String.format("%-10s %10s %-50s %-30s %-30s, %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
         // Loop over all Retrieved Populations in the list
         for (Country pop : population) {
 
-            String popCount = String.format("%-20s %-20s %-30s %10s", pop.name, pop.continent, pop.region, pop.population);
+            String popCount = String.format("%-10s %10s %-50s %-30s %-30s, %-30s", pop.code, pop.population,  pop.name, pop.capital, pop.continent, pop.region);
             System.out.println(popCount);
         }
     }
