@@ -1,10 +1,10 @@
-# USE CASE: 6 Produce a Report on the TOP N Populated countries in a region where N value is provided.
+# USE CASE: 6 Produce a Report on the TOP N Populated countries in a region where N value is provided by the user.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a *Data Analyst* I want to *produce a report on the TOP N Populated countries in regions* to allow *easy access to this population information.*
+As a *Data Analyst* I want to *produce a report on the TOP N Populated Countries in a Regions where N value is provided by the user* So that I can *allow easy access to this population information.*
 
 ### Scope
 
@@ -16,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-We know the value. Database contains current world population data.
+The N value is known. Database contains current world population data.
 
 ### Success End Condition
 
@@ -32,13 +32,14 @@ The Data Analyst.
 
 ### Trigger
 
-A request for Top N Countries Population by regions information is sent to Research Department.
+A request for The top N populated Countries in a Region information where N was provided by the user was sent to Research Department.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Organisation request Top N countries population information by regions.
-2. Data Analyst able to extract report of Top N Countries grouped by regions sorted from largest to smallest population.
-3. Data Analyst provides report to organisation.
+1. Organisation request the top N populated Countries in a Region population information
+2. Data Analyst Captures specifics of Population information required
+3. Data Analyst able to extract report of The top N populated Countries in a Region.
+4. Data Analyst provides report to organisation.
 
 ## EXTENSIONS
 

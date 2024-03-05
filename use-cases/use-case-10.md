@@ -4,8 +4,7 @@
 
 ### Goal in Context
 
-As a *Data Analyst* I want to *produce a report on all the cities in a country organised by largest to smallest population*
-to allow easy access to this population information.
+As a *Data Analyst* I want to *produce a report on all the cities in a country organised by largest to smallest population* so that I can *allow easy access to this population information.*
 
 ### Scope
 
@@ -17,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-Database contains current world population data.
+Database contains current Country and City population data.
 
 ### Success End Condition
 
@@ -33,14 +32,14 @@ Data Analyst.
 
 ### Trigger
 
-A request for City Population information in country is sent to Research Department
+A request for All the cities in a country organised by largest to smallest population is sent to Research Department
 
 ## MAIN SUCCESS SCENARIO
 
-1. Organisation requests Population Report on all the cities in a country.
-2. Data Analyst extracts report sorted from largest to smallest population.
-3. Data Analyst provides report to the organisation.
-
+1. Organisation request All the cities in a country organised by largest to smallest population information
+2. Data Analyst Captures specifics of Population information required
+3. Data Analyst able to extract report of All the cities in a country organised by largest to smallest population.
+4. Data Analyst provides report to organisation.
 
 ## EXTENSIONS
 

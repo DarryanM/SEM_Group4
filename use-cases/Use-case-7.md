@@ -1,4 +1,4 @@
-# USE CASE: 7 Produce a report on All the cities in the world organised by largest population to smallest
+# USE CASE: 7 Produce a report on All the cities in the world organised by largest to smallest population
 
 ## CHARACTERISTIC INFORMATION
 
@@ -16,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-We know the role.  Database contains current world population data.
+Database contains current world population data.
 
 ### Success End Condition
 
@@ -32,14 +32,14 @@ The Data Analyst.
 
 ### Trigger
 
-A request for All cities in a region Population information is sent to the Organisation.
+A request for All Cities in the World Population information is sent to the Research Department.
 
 ## MAIN SUCCESS SCENARIO
 
-1. The Organisation  request All cities in the world Population Report.
-2. The Data Analyst capture the information for all the cities in the world for the organisation.
-3. The Data Analyst extract report sorted from largest to smallest population.
-4. The Data Analyst provides report to the organisation
+1. Organisation request All Cities in the world Population information .
+2. Data Analyst Captures specifics of Population information required.
+3. Data Analyst able to extract report of All Cities in the world Population information .
+4. Data Analyst provides report to organisation.
 
 
 ## EXTENSIONS

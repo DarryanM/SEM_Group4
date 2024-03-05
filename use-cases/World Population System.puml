@@ -1,0 +1,139 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+actor DA as "Data Analyst"
+
+rectangle Database
+
+rectangle "World Population" {
+
+    usecase UC1 as "Population of
+    All Countries
+    in the World"
+    usecase UC2 as "Population of
+        All Countries
+        in a Continents"
+    usecase UC3 as "Population of
+        All Countries
+        in a Region"
+    usecase UC4 as "Top N Populated
+        Countries
+        in the World"
+    usecase UC5 as "Top N Populated
+        Countries
+        in a Continent"
+    usecase UC6 as "Top N Populated
+        Countries
+        in a Region"
+    usecase UC7 as "Population of
+        All Cities
+        in the World"
+    usecase UC8 as "Population of
+        All Cities
+        in a Continents"
+    usecase UC9 as "Population of
+        All Cities
+        in a Region"
+    usecase UC10 as "Population of
+        All Cities
+        in a Country"
+    usecase UC11 as "Population of
+        All Cities
+        in a District"
+    usecase UC12 as "Top N Populated
+        Cities
+        in the World"
+    usecase UC13 as "Top N Populated
+        Cities
+        in a Continent"
+    usecase UC14 as "Top N Populated
+        Cities
+        in a Region"
+    usecase UC15 as "Top N Populated
+        Cities
+        in a Country"
+    usecase UC16 as "Top N Populated
+        Cities
+        in a District"
+    usecase UC17 as "Population of
+        All Capital Cities
+        in the World"
+    usecase UC18 as "Population of
+        All Capital Cities
+        in a Continents"
+    usecase UC19 as "Population of
+        All Capital Cities
+        in a Region"
+    usecase UC20 as "Top N Populated
+        Capital Cities
+        in the World"
+    usecase UC21 as "Top N Populated
+        Capital Cities
+        in a Continent"
+    usecase UC22 as "Top N Populated
+        Capital Cities
+        in a Region"
+
+    usecase UCa as "Print Report"
+    usecase UCb as "Print Report"
+    usecase UCc as "Print Report"
+
+
+
+    'Data Analyst Database to Retrieve reports
+    DA - UC1
+    DA - UC2
+    DA - UC3
+
+    UC1 ..> UC4 : include
+    UC2 ..> UC5 : include
+    UC3 ..> UC6 : include
+
+    UC7 ..> UC12 : include
+    UC8 ..> UC13 : include
+    UC9 ..> UC14 : include
+    UC10 ..> UC15 : include
+    UC11 ..> UC16 : include
+
+    UC17 ..> UC20 : include
+    UC18 ..> UC21 : include
+    UC19 ..> UC22 : include
+
+    UC1 ..> UC7 : include
+    UC2 ..> UC8 : include
+    UC3 ..> UC9 : include
+
+    UC7 ..> UC17 : include
+    UC8 ..> UC18 : include
+    UC9 ..> UC19 : include
+
+    UC1 ..> UC10 : include
+    UC2 ..> UC11 : include
+
+    UC4 ..> UCa : include
+    UC12 ..> UCa : include
+    UC15 ..> UCa : include
+    UC20 ..> UCa : include
+
+    UC5 ..> UCb : include
+    UC13 ..> UCb : include
+    UC16 ..> UCb : include
+    UC21 ..> UCb : include
+
+    UC6 ..> UCc : include
+    UC14 ..> UCc : include
+    UC22 ..> UCc : include
+
+
+
+
+    'Database Connections
+         UC1 - Database
+         UC2 - Database
+         UC3 - Database
+}
+
+
+
+@enduml

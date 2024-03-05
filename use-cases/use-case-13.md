@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As the *Data Analyst* we want to *Produce a report on The top N populated cities in a continent where N is provided by the user* so that I can *allow easy access to this population information.*
+As a *Data Analyst* I want to *Produce a report on The top N populated Cities in a Continent where N is provided by the user* so that I can *to allow easy access to this population information.*
 
 ### Scope
 
@@ -16,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-We know the role.  Database contains current City and Continent population data.
+The N value is known.  Database contains current world population data.
 
 ### Success End Condition
 
@@ -31,13 +31,13 @@ No report is produced.
 Data Analyst
 ### Trigger
 
-A request for Continent Population information is to the Research Dept.
+A request for The top N populated Cities a Continent where N was provided by the user is sent to the Research Dept.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Organisation request population information
+1. Organisation request the top N populated Cities in a Continent population information
 2. Data Analyst Captures specifics of Population information required
-3. Data Analyst able to extract report of Top # Populated Cities in a Continent.
+3. Data Analyst able to extract report of The top N populated Cities in a Continent.
 4. Data Analyst provides report to organisation.
 
 

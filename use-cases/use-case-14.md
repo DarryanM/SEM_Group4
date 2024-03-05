@@ -16,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-We know the role.  Database contains current City and Region population data.
+The N value is known. Database contains current world population data.
 
 ### Success End Condition
 
@@ -31,13 +31,13 @@ No report is produced.
 Data Analyst
 ### Trigger
 
-A request for Region Population information is to the Research Dept.
+A request for The top N populated Cities a Region where N was provided by the user is sent to Research Department.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Organisation request population information
+1. Organisation request the top N populated Cities in a Region population information
 2. Data Analyst Captures specifics of Population information required
-3. Data Analyst able to extract report of Top # Populated Cities in a Region.
+3. Data Analyst able to extract report of The top N populated Cities in a Region.
 4. Data Analyst provides report to organisation.
 
 

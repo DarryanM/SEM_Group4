@@ -1,4 +1,4 @@
-# USE CASE: 1 Produce a report on All the countries in the world organised by largest population to smallest
+# USE CASE: 1 Produce a report on All the countries in the world organised by largest to smallest population
 
 ## CHARACTERISTIC INFORMATION
 
@@ -32,13 +32,14 @@ Data Analyst.
 
 ### Trigger
 
-A request for Country Population information is sent to Research Dept.
+A request for All the countries in the world organised by largest to smallest population information is sent to the Research Dept.
 
 ## MAIN SUCCESS SCENARIO
 
-1. The organisation request population information for all countries in the world
-2. Data analyst extract report sorted from largest to smallest population.
-3. Data analyst provides report to the organisation
+1. Organisation request All the countries in the world organised by largest to smallest population information .
+2. Data Analyst Captures specifics of Population information required.
+3. Data Analyst able to extract report of All the countries in the world organised by largest to smallest population information .
+4. Data Analyst provides report to organisation.
 
 
 ## EXTENSIONS

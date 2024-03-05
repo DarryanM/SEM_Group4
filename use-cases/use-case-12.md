@@ -1,10 +1,10 @@
-# USE CASE: 12 Produce a report on the top "N" populated cities in the world
+# USE CASE: 12 Produce a report on The top N populated Cities the World where N is provided by the user.
 
 ## CHARACTERISTIC INFORMATION
 
 ### Goal in Context
 
-As a *Data Analyst* I want to *produce a report on the top "N" populated cities in the world, with "N" provided*, to allow easy access to this population information.
+As a *Data Analyst* I want to *Produce a report on The top N populated Cities in the World where N is provided by the user* so that I can *to allow easy access to this population information.*
 
 ### Scope
 
@@ -16,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-We know the value.  Database contains current world population data.
+The N value is known. Database contains current world population data.
 
 ### Success End Condition
 
@@ -32,13 +32,14 @@ Data Analyst.
 
 ### Trigger
 
-A request for the top "N" populated cities in the world is sent to Research Department.
+A request for The top N populated Cities in the World where N was provided by the user is sent to Research Department.
 
 ## MAIN SUCCESS SCENARIO
 
-1. Organisation requests Population Report on the top "N" populated cities in the world.
-2. Data Analyst extracts report sorted from largest to smallest population.
-3. Data Analyst provides report to the organisation.
+1. Organisation request the top N populated Cities in the World population information
+2. Data Analyst Captures specifics of Population information required
+3. Data Analyst able to extract report of The top N populated Cities in the World.
+4. Data Analyst provides report to organisation.
 
 
 ## EXTENSIONS
