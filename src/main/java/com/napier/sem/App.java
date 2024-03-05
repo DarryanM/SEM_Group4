@@ -42,6 +42,12 @@ public class App {
         //Display Results
         a.printTopCityPopulation(nCityPop);
 
+        // Extract Continent Population
+        ArrayList<Country> population2 = a.getContinentPopulation();
+
+        //Display Continent Population Results
+        a.printContinentPopulation(population2);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -142,7 +148,7 @@ public class App {
         // Print header
         System.out.println(String.format("%-20s ", "All the countries in the world organised by largest population to smallest."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-10s %10s %-50s %-30s %-30s, %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
+        System.out.println(String.format("%-10s %10s %-50s %10s %-30s %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
         // Loop over all Retrieved Populations in the list
         for (Country pop : population) {
 
@@ -367,4 +373,60 @@ public class App {
             System.out.println(popCount);
         }
     }
+
+    /**
+     * Gets the population of all countries in a continent.
+     *
+     * @return A list of all countries in continenet population sorted in descending order, or null if there is an error.
+     */
+    public ArrayList<Country> getContinentPopulation() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT code, name, continent, region, capital, population "
+                            + "FROM country "
+                            + "Order By continent ASC, population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<Country> population2 = new ArrayList<Country>();
+            while (rset.next()) {
+                Country pop = new Country();
+                pop.population = rset.getInt("country.population");
+                pop.name = rset.getString("country.Name");
+                pop.continent = rset.getString("country.continent");
+                pop.capital = rset.getInt("country.capital");
+                pop.region = rset.getString("country.region");
+                pop.code = rset.getString("country.code");
+                population2.add(pop);
+            }
+            return population2;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of Countries in Continent Populations.
+     *
+     * @param population2 The list of Countries in Continent Populations to print.
+     */
+    public void printContinentPopulation(ArrayList<Country> population2) {
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "Population of All the countries in a continent organised by largest population to smallest."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-10s %10s %-50s %-30s %-30s %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
+        // Loop over all Retrieved Populations in the list
+        for (Country pop : population2) {
+
+            String popCount = String.format("%-10s %10s %-50s %10s %-30s %-30s", pop.code, pop.population,  pop.name, pop.capital, pop.continent, pop.region);
+            System.out.println(popCount);
+        }
+    }
+
 }
