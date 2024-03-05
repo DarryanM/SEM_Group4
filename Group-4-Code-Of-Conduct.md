@@ -16,13 +16,12 @@
 - I will be professional and tactful when providing comments.
 - I will be open to receiving feedback when others review my work.
 - I will treat my team members with respect.
-- Any concerns will be communicated in professional manner to the team leader
-- Respect the privacy of other team members
+- Any concerns will be communicated in professional manner to the team leader.
+- Respect the privacy of other team members.
 - Respect the diversity of opinions and cultures of other team members
 
 ##Completing the Assignment
 
-- I will work on the assignment by myself.
-- I will provide tips, hacks, and comments to others to assist in completing the assignment on time
-- I will provide updated status of my progress to the team leader
+- I will work on the assignment along with my team members.
+- I will provide tips, hacks, and comments to others to assist in completing the assignment on time.
 - I will not assist on cheating or committing paralogism.
