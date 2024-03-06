@@ -82,7 +82,7 @@ public class App {
         ArrayList<City> topNCityPopWorld = a.getTopNCityPopWorld12();
 
         //Display Results
-        a.printgetTopNCityPopWorld12(topNCityPopWorld);
+        a.printGetTopNCityPopWorld12(topNCityPopWorld);
 
         // Disconnect from database
         a.disconnect();
@@ -783,16 +783,16 @@ public class App {
     /**
      * Prints a list of Populations.
      *
-     * @param topnCityPopWorld12 The list of Population to print.
+     * @param topNCityPopWorld12 The list of Population to print.
      */
-    public void printgetTopNCityPopWorld12(ArrayList<City> topnCityPopWorld12) {
+    public void printGetTopNCityPopWorld12(ArrayList<City> topNCityPopWorld12) {
         // Print header
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "The top N populated cities in the world where N is provided by the user."));
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%10s %-30s %-30s %-30s %-30s", "row_num", "City", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
-        for (City pop : topnCityPopWorld12) {
+        for (City pop : topNCityPopWorld12) {
 
             String popCount = String.format("%10s %-30s %-30s %-30s %-30s", pop.row_num, pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
