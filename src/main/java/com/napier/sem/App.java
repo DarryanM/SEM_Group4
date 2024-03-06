@@ -78,6 +78,12 @@ public class App {
         //Display Region Population Results
         a.printRegionPopulation(population3);
 
+        // Extract Top City Population in a Continent
+        ArrayList<City> topNCityPopWorld = a.getTopNCityPopWorld12();
+
+        //Display Results
+        a.printgetTopNCityPopWorld12(topNCityPopWorld);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -733,6 +739,62 @@ public class App {
         for (Country pop : population3) {
 
             String popCount = String.format("%-10s %10s %-50s %-30s %-30s %-30s", pop.code, pop.population,  pop.name, pop.capital, pop.continent, pop.region);
+            System.out.println(popCount);
+        }
+    }
+    /**
+     * Query 12: The top N populated cities in the world where N is provided by the user.
+     * Gets the population of all cities in the world
+     * @return A list of all cities sorted by population in descending order, or null if there is an error.
+     */
+    public ArrayList<City> getTopNCityPopWorld12() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "WITH city as (select city.name as name, country.name as country, city.district as district, city.population as population, RANK () " +
+                            "OVER(ORDER BY population DESC) row_num " +
+                            "FROM city inner join country on city.countrycode = country.code) " +
+                            "SELECT * FROM city  WHERE row_num <=10 ";
+
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> topNCityPopWorld12 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.population = rset.getInt("population");
+                pop.name = rset.getString("Name");
+                pop.country = rset.getString("country");
+                pop.row_num = rset.getInt("row_num");
+                pop.district = rset.getString("district");
+                topNCityPopWorld12.add(pop);
+            }
+            return topNCityPopWorld12;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of Populations.
+     *
+     * @param topnCityPopWorld12 The list of Population to print.
+     */
+    public void printgetTopNCityPopWorld12(ArrayList<City> topnCityPopWorld12) {
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "The top N populated cities in the world where N is provided by the user."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%10s %-30s %-30s %-30s %-30s", "row_num", "City", "Country", "District", "Population"));
+        // Loop over all Retrieved Populations in the list
+        for (City pop : topnCityPopWorld12) {
+
+            String popCount = String.format("%10s %-30s %-30s %-30s %-30s", pop.row_num, pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
         }
     }
