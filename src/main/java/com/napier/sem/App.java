@@ -76,7 +76,7 @@ public class App {
         ArrayList<Country> population3 = a.getRegionPopulation();
 
         //Display Region Population Results
-        a.printRegionPopulation(population);
+        a.printRegionPopulation(population3);
 
         // Disconnect from database
         a.disconnect();
