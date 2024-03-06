@@ -44,8 +44,8 @@ A request for All Cities in the World Population information is sent to the Rese
 
 ## EXTENSIONS
 
-3. **Role does not exist**:
-    1. Data Analyst informs that no role exists.
+3. **Information does not exist**:
+   1. Organisation informs that no Information on topic exists.
 
 ## SUB-VARIATIONS
 

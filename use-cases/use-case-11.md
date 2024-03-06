@@ -45,8 +45,8 @@ A request for All the Cities in a District organised by largest to smallest popu
 
 ## EXTENSIONS
 
-3. **Role does not exist**:
-    1. Data Analyst informs that no role exists.
+3. **Information does not exist**:
+   1. Organisation informs that no Information on topic exists.
 
 ## SUB-VARIATIONS
 

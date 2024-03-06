@@ -43,8 +43,8 @@ A request for The top N populated Countries in the World where N was provided by
 
 ## EXTENSIONS
 
-3. **Role does not exist**:
-    1. Data Analyst informs that no role exists.
+3. **Information does not exist**:
+   1. Organisation informs that no Information on topic exists.
 
 ## SUB-VARIATIONS
 
