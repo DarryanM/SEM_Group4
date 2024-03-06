@@ -72,6 +72,12 @@ public class App {
         // Display district population results
         a.printTopCityInRegion(nCityTopReg);
 
+        // Extract Region Population
+        ArrayList<Country> population3 = a.getRegionPopulation();
+
+        //Display Region Population Results
+        a.printRegionPopulation(population);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -672,6 +678,61 @@ public class App {
         for (City pop : nCityTopReg) {
 
             String popCount = String.format("%10s %-30s %-30s %-30s %-30s %10s", pop.row_num, pop.name, pop.country, pop.district, pop.region, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
+    /**
+     * Gets the population of all countries in a Region.
+     *
+     * @return A list of the population of all countries in a Region  sorted in descending order, or null if there is an error.
+     */
+    public ArrayList<Country> getRegionPopulation() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT code, name, continent, region, capital, population "
+                            + "FROM country "
+                            + "Order By region ASC, population DESC";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<Country> population3 = new ArrayList<Country>();
+            while (rset.next()) {
+                Country pop = new Country();
+                pop.population = rset.getInt("country.population");
+                pop.name = rset.getString("country.Name");
+                pop.continent = rset.getString("country.continent");
+                pop.capital = rset.getInt("country.capital");
+                pop.region = rset.getString("country.region");
+                pop.code = rset.getString("country.code");
+                population3.add(pop);
+            }
+            return population3;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of Countries in a Region Populations.
+     *
+     * @param population3 The list of Countries in Continent Populations to print.
+     */
+    public void printRegionPopulation(ArrayList<Country> population3) {
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "Population of All the countries in a Region organised by largest population to smallest."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-10s %10s %-50s %-30s %-30s %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
+        // Loop over all Retrieved Populations in the list
+        for (Country pop : population3) {
+
+            String popCount = String.format("%-10s %10s %-50s %-30s %-30s %-30s", pop.code, pop.population,  pop.name, pop.capital, pop.continent, pop.region);
             System.out.println(popCount);
         }
     }
