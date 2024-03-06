@@ -66,6 +66,12 @@ public class App {
         // Display district population results
         a.printDistrictPopulation(districtPopulation11);
 
+        // Extract district population information
+        ArrayList<City> nCityTopReg = a.getTopCityInRegion();
+
+        // Display district population results
+        a.printTopCityInRegion(nCityTopReg);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -616,6 +622,57 @@ public class App {
             System.out.println(popCount);
         }
     }
+    public ArrayList<City> getTopCityInRegion() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
 
+                    "WITH city1 as (select city.name as name, country.name as country, district, country.region as region, city.population as population, RANK () " +
+                            "OVER(PARTITION BY region ORDER BY population DESC) row_num " +
+                            "FROM city inner join country on city.countrycode = country.code) " +
+                            "SELECT * FROM city1  WHERE row_num <=2";
 
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> nCityTopReg = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.population = rset.getInt("population");
+                pop.name = rset.getString("Name");
+                pop.country = rset.getString("Country");
+                pop.region = rset.getString("region");
+                pop.district = rset.getString("district");
+                pop.row_num = rset.getInt("row_num");
+                nCityTopReg.add(pop);
+            }
+            return nCityTopReg;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of Populations.
+     *
+     * @param nCityTopReg The list of Population to print.
+     */
+    public void printTopCityInRegion(ArrayList<City> nCityTopReg) {
+        // Print header
+        System.out.println(String.format("%-20s ", "The top N populated cities in a continent where N is provided by the user."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%10s %-30s %-30s %-30s %-30s %10s", "row_num", "City", "Country",  "District", "Region", "Population"));
+        // Loop over all Retrieved Populations in the list
+        for (City pop : nCityTopReg) {
+
+            String popCount = String.format("%10s %-30s %-30s %-30s %-30s %10s", pop.row_num, pop.name, pop.country, pop.district, pop.region, pop.population);
+            System.out.println(popCount);
+        }
+    }
 }

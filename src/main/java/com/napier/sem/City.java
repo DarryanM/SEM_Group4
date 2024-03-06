@@ -19,4 +19,6 @@ public class City {
     public String continent;
 
     public int row_num;
+
+    public String region;
 }
