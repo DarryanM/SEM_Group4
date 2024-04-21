@@ -45,6 +45,9 @@ public class App {
         // Extract Top N Countries in a Region
         ArrayList<Country> topNCountriesRegPop = a.getTopNCountriesInRegPopulation("North America", 3);
 
+        //Display Results
+        a.printTopNCountriesInRegPopulation(topNCountriesRegPop);
+
         // Disconnect from database
         a.disconnect();
     }
