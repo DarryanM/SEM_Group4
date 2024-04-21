@@ -238,4 +238,111 @@ public class AppTest {
         app.printTopNCountriesInRegPopulation(topNCountriesRegPop);
     }
 
+    //Unit Tests for Report 10 - All the cities in a country organised by largest population to smallest.
+    @Test
+    void printCityPopulation10TestNull()
+    {
+        app.printCountryPopulation(null);
+    }
+
+    @Test
+    void printCityPopulation10TestContainsNull()
+    {
+        ArrayList<Country> population = new ArrayList<Country>();
+        population.add(null);
+        app.printCountryPopulation(population);
+    }
+
+    @Test
+    void printCityPopulation10TestEmpty()
+    {
+        ArrayList<Country> population = new ArrayList<Country>();
+        app.printCountryPopulation(population);
+    }
+
+    @Test
+    void printCityPopulation10()
+    {
+        ArrayList<City> population = new ArrayList<>();
+        City citypop10 = new City();
+        citypop10.population = 10000;
+        citypop10.name = "city";
+        citypop10.country = "country";
+        citypop10.district = "district";
+        population.add(citypop10);
+        app.printCityPopulation10(population);
+    }
+
+    //Unit tests for Report 11 - All the cities in a district organised by largest population to smallest.
+    @Test
+    void printDistrictPopulationTestNull()
+    {
+        app.printDistrictPopulation(null);
+    }
+
+    @Test
+    void printDistrictPopulationTestContainsNull()
+    {
+        ArrayList<City> districtpopulation11 = new ArrayList<>();
+        districtpopulation11.add(null);
+        app.printDistrictPopulation(districtpopulation11);
+    }
+
+    @Test
+    void printDistrictPopulationTestEmpty()
+    {
+        ArrayList<City> districtpopulation11 = new ArrayList<>();
+        app.printDistrictPopulation(districtpopulation11);
+    }
+
+    @Test
+    void printDistrictPopulation()
+    {
+        ArrayList<City> districtpopulation11 = new ArrayList<>();
+        City district = new City();
+        district.population = 10000;
+        district.name = "city";
+        district.country = "country";
+        district.district = "district";
+        districtpopulation11.add(district);
+        app.printDistrictPopulation(districtpopulation11);
+    }
+
+    //Apptests for Report 12 - The top N populated cities in the world where N is provided by the user.
+    @Test
+    void printGetTopNCityPopWorld12TestNull()
+    {
+        app.printGetTopNCityPopWorld12(null);
+    }
+
+    @Test
+    void printGetTopNCityPopWorld12TestContainsNull()
+    {
+        ArrayList<City> topNCityPopWorld12 = new ArrayList<City>();
+        app.printGetTopNCityPopWorld12(topNCityPopWorld12);
+    }
+
+    @Test
+    void printGetTopNCityPopWorld12TestEmpty()
+    {
+        ArrayList<City> topNCityPopWorld12 = new ArrayList<City>();
+        app.printGetTopNCityPopWorld12(topNCityPopWorld12);
+    }
+
+    @Test
+    void printGetTopNCityPopWorld12()
+    {
+        ArrayList<City> topNCityPopWorld12 = new ArrayList<City>();
+        City pop = new City();
+        pop.population = 10000;
+        pop.name = "city";
+        pop.country = "country";
+        pop.row_num = 40;
+        pop.district = "district";
+        topNCityPopWorld12.add(pop);
+        app.printGetTopNCityPopWorld12(topNCityPopWorld12);
+    }
+
+
+
 }
