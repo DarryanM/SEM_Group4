@@ -736,7 +736,7 @@ public class App {
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract Population information
-            ArrayList<City> nCityPop = new ArrayList<City>();
+            ArrayList<City> nCityTopCont = new ArrayList<City>();
             while (rset.next()) {
                 City pop = new City();
                 pop.population = rset.getInt("population");
@@ -745,9 +745,9 @@ public class App {
                 pop.continent = rset.getString("continent");
                 pop.district = rset.getString("district");
                 pop.row_num = rset.getInt("row_num");
-                nCityPop.add(pop);
+                nCityTopCont.add(pop);
             }
-            return nCityPop;
+            return nCityTopCont;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get Population details");

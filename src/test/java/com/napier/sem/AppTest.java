@@ -343,6 +343,7 @@ public class AppTest {
         app.printGetTopNCityPopWorld12(topNCityPopWorld12);
     }
 
+    // TESTS FOR printTopCityInContinent
     @Test
     void printTopCityInContinentTestNull()
     {
@@ -371,11 +372,11 @@ public class AppTest {
         pop.population = 100000;
         pop.name = "Name";
         pop.country = "Country";
-        pop.region = "region";
-        pop.district = "district";
+        pop.continent = "Continent";
+        pop.district = "District";
         pop.row_num = 1;
         nCityTopCont.add(pop);
-        app.printTopCityInRegion(nCityTopCont);
+        app.printTopCityInContinent(nCityTopCont);
     }
 
 
