@@ -51,6 +51,25 @@ public class App {
         //Display Results
         a.printTopNCountriesInRegPopulation(topNCountriesRegPop);
 
+        // Extract City Population in the world
+        ArrayList<City> cityPop7 = a.getCityPop();
+
+        //Display Results for City population in the world
+        a.printCityPop(cityPop7);
+
+        // Extract City Population in a continent
+        ArrayList<City> cityPop8 = a.getCityPopconti("Asia",999999);
+
+        //Display Results for city population in a continent
+        a.printCityPop8(cityPop8);
+
+        // Extract City Population in a region
+        ArrayList<City> cityPop9 = a.getCityPopregi("Eastern Asia", 999999);
+
+        //Display Results for city population in a region
+        a.printCityPop9(cityPop9);
+
+
         //Report 10 - Cities in a country from largest to smallest population
         // Extract city population information
         ArrayList<City> citypop10 = a.getCityPopulation10("China", 5);
@@ -557,6 +576,225 @@ public class App {
                 System.out.println(popCount);
             }
         }
+
+
+
+
+    /**
+     * Gets the All Cities population in the world .
+     *
+     * @return A list of all cities in the world Population sorted in descending order, or null if there is an error.
+     */
+    public ArrayList<City> getCityPop() {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ct.countryCode, c.name as Country, ct.name As  City, ct.district, ct.population " +
+                            "from city as ct Join country as c ON ct.CountryCode = c.code  " +
+                            "Order by ct.population desc ";
+
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> cityPop7 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.population = rset.getInt("population");
+                pop.name = rset.getString("city");
+                pop.district = rset.getString("district");
+                pop.countryCode = rset.getString("countryCode");
+                pop.country = rset.getString("Country");
+                cityPop7.add(pop);
+            }
+            return cityPop7;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the Cities in the World.
+     *
+     * @param CityPop7 The list of All Cities in the world Population to print.
+     */
+    public void printCityPop(ArrayList<City> CityPop7) {
+
+        // Check employees is not null
+        if (CityPop7 == null)
+        {
+            System.out.println("No Countries");
+            return;
+        }
+
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "All the Cities in the world organised by largest population to smallest."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s %-20s %-20s %-30s %10s", "Country Code", "city", "Country", "District", "Population"));
+        // Loop over all Retrieved Populations in the list
+        for (City pop : CityPop7) {
+
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-20s %-20s %-20s %-30s %10s", pop.countryCode, pop.name, pop.countryCode, pop.district, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
+
+
+
+
+
+
+    /**
+     * Gets All the cities in a continent.
+     *
+     * @return A list of all Population sorted in descending order, or null if there is an error.
+     */
+
+    public ArrayList<City> getCityPopconti(String conti1, int limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ct.countryCode, c.name As Country, ct.name As City, ct.population, c.continent " +
+                            " FROM city as ct Join country as c ON ct.CountryCode = c.code " +
+                            " WHERE c.continent = '" + conti1 +"' "+
+                            "Order by ct.population desc LIMIT "+ limit1;
+
+
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> cityPop8 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.population = rset.getInt("population");
+                pop.name = rset.getString("city");
+                pop.countryCode = rset.getString("countryCode");
+                pop.country = rset.getString("Country");
+                pop.continent = rset.getString("Continent");
+                cityPop8.add(pop);
+            }
+            return cityPop8;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the Cities in a continent sorted by largest to smallest population.
+     *
+     * @param CityPop8 The list of All Cities in a continent Population to print.
+     */
+    public void printCityPop8(ArrayList<City> CityPop8) {
+
+        // Check employees is not null
+        if (CityPop8 == null)
+        {
+            System.out.println("No Cities in a continent");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "All the Cities in a continent organised by largest population to smallest."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s %-20s %-20s %-30s %10s", "Country Code", "city", "Country", "Continent", "Population"));
+        // Loop over all Retrieved Populations in the list
+        for (City pop : CityPop8) {
+
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-20s %-20s %-20s %-30s %10s", pop.countryCode, pop.name, pop.country, pop.continent, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
+
+
+    /**
+     * Gets All the cities in a Region.
+     *
+     * @return A list of all Population sorted in descending order, or null if there is an error.
+     */
+
+    public ArrayList<City> getCityPopregi(String region1, int limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ct.countryCode, c.name As Country, ct.name As  City, ct.population, c.region  " +
+                            " from city as ct  Join country as c ON ct.CountryCode = c.code  " +
+                            " WHERE c.region = '" + region1 +"' "+
+                            "Order by ct.population desc LIMIT "+ limit1;
+
+
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> cityPop9 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.population = rset.getInt("population");
+                pop.name = rset.getString("city");
+                pop.countryCode = rset.getString("countryCode");
+                pop.country = rset.getString("Country");
+                pop.region = rset.getString("region");
+
+                cityPop9.add(pop);
+            }
+            return cityPop9;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the Cities in a region sorted by largest to smallest population.
+     *
+     * @param CityPop9 The list of All Cities in a region Population to print.
+     */
+    public void printCityPop9(ArrayList<City> CityPop9) {
+
+        // Check employees is not null
+        if (CityPop9 == null)
+        {
+            System.out.println("No Cities in a region");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "All the Cities in a region organised by largest population to smallest."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s %-20s %-20s %-30s %10s", "Country Code", "city", "Country", "Region", "Population"));
+        // Loop over all Retrieved Populations in the list
+        for (City pop : CityPop9) {
+
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-20s %-20s %-20s %-30s %10s", pop.countryCode, pop.name, pop.country, pop.region, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
+
 
     /**
     All the cities in a country organised by largest population to smallest.*/
