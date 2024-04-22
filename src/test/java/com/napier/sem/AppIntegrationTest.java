@@ -41,6 +41,52 @@ public class AppIntegrationTest
     }
 
     //Put Integration Tests above HERE
+
+    //Integration test for Report 10 - All the cities in a country organised by largest population to smallest.
+    @Test
+    void testCityPopulation10() {
+        app.getCityPopulation10("xyz", -10);
+        ArrayList<City> population10 = app.getCityPopulation10("China", 5);
+
+        City citypop10 = app.getCity("Chn");
+        assertEquals(citypop10.population, 9696300);
+        assertEquals(citypop10.name, "Shanghai");
+        assertEquals(citypop10.country, "China");
+        assertEquals(citypop10.district, "Shanghai");
+
+        app.getCityPopulation10("Istanbul", 3);
+    }
+
+    //Integration test for Report 11 - All the cities in a district organised by largest population to smallest.
+    @Test
+    void testGetDistrictPopulation() {
+        app.getDistrictPopulation("xyz", -10);
+        ArrayList<City> districtPopulation11 = app.getDistrictPopulation("Istanbul", 5);
+
+        City district = app.getCity("TUR");
+        assertEquals(district.population, 8787958);
+        assertEquals(district.name, "Istanbul");
+        assertEquals(district.country, "Turkey");
+        assertEquals(district.district, "Istanbul");
+
+        app.getDistrictPopulation("Istanbul", 3);
+    }
+
+    //Integration test for Report 12 - The top N populated cities in the world where N is provided by the user.
+    @Test
+    void getTopNCityPopWorld12()
+    {
+        app.getTopNCityPopWorld12(-10);
+        ArrayList<City> topNCityPopWorld12 = app.getTopNCityPopWorld12(5);
+        City pop = app.getCity("Ind");
+        assertEquals(pop.population, 10500000);
+        assertEquals(pop.name, "Mumbai (Bombay)");
+        assertEquals(pop.country, "India");
+        assertEquals(pop.district, "Maharashtra");
+
+        app.getTopNCityPopWorld12(5);
+    }
+
     //Integration test Report 13 - The top N populated cities in a continent where N is provided by the user.
     @Test
     void testgetTopCityInContinent()
@@ -82,4 +128,6 @@ public class AppIntegrationTest
         assertEquals(pop.district,"Seoul");
         app.getTopCityInCountry("South Korea", 3);
     }
+
+
 }
