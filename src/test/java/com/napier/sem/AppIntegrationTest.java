@@ -40,6 +40,53 @@ public class AppIntegrationTest
         assertEquals(pop.country, "South Korea");
     }
 
+    // Testing for All the countries in the world organised by largest population
+    @Test
+    void testGetCountryPopulation()
+    {
+        ArrayList<Country> population = app.getCountryPopulation();
+
+        Country pop = app.getCountry("ABW");
+        assertEquals(pop.code, "ABW");
+        assertEquals(pop.population, 103000);
+        assertEquals(pop.name, "Aruba");
+        assertEquals(pop.continent, "North America");
+        assertEquals(pop.region, "Caribbean");
+        app.getCountryPopulation();
+    }
+
+    //Testing for All the countries in a continent organised by largest population
+    @Test
+    void testGetContinentPopulation()
+    {
+        ArrayList<Country> population2 = app.getContinentPopulation("North America");
+
+        Country pop = app.getCountry("ABW");
+        assertEquals(pop.code, "ABW");
+        assertEquals(pop.population, 103000);
+        assertEquals(pop.name, "Aruba");
+        assertEquals(pop.continent, "North America");
+        assertEquals(pop.region, "Caribbean");
+        app.getContinentPopulation("North America");
+    }
+
+    //Testing for All the countries in a Region organised by largest population
+    @Test
+    void testGetRegionPopulation()
+    {
+        ArrayList<Country> population3 = app.getRegionPopulation("Caribbean");
+
+        Country pop = app.getCountry("ABW");
+        assertEquals(pop.code, "ABW");
+        assertEquals(pop.population, 103000);
+        assertEquals(pop.name, "Aruba");
+        assertEquals(pop.continent, "North America");
+        assertEquals(pop.region, "Caribbean");
+        app.getRegionPopulation("Caribbean");
+    }
+
+
+
     @Test
     void testGetTopNCountryPopulation()
     {

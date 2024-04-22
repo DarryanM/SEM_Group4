@@ -70,7 +70,6 @@ public class App {
 
         //Display Results of Report 12
         a.printGetTopNCityPopWorld12(topNCityPopWorld);
-
         // Extract Top City Population in a Continent
         ArrayList<City> nCityTopCont = a.getTopCityInContinent("Asia",3);
 
