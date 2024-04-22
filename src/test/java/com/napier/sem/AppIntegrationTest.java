@@ -55,4 +55,31 @@ public class AppIntegrationTest
         assertEquals(pop.district,"Seoul");
         app.getTopCityInContinent("Asia", 3);
     }
+    @Test
+    void testgetTopCityInRegion()
+    {
+        app.getTopCityInRegion("xyz",-10);
+        ArrayList<City> nCityTopReg = app.getTopCityInRegion("Eastern Asia",3);
+
+        City pop = app.getCity("KOR");
+        assertEquals(pop.population,9981619);
+        assertEquals(pop.name,"Seoul");
+        assertEquals(pop.country, "South Korea");
+        assertEquals(pop.district,"Seoul");
+        app.getTopCityInRegion("Eastern Asia", 3);
+    }
+
+    @Test
+    void testgetTopCityInCountry()
+    {
+        app.getTopCityInCountry("xyz",-10);
+        ArrayList<City> nCityTopCtry = app.getTopCityInCountry("South Korea",3);
+
+        City pop = app.getCity("KOR");
+        assertEquals(pop.population,9981619);
+        assertEquals(pop.name,"Seoul");
+        assertEquals(pop.country, "South Korea");
+        assertEquals(pop.district,"Seoul");
+        app.getTopCityInCountry("South Korea", 3);
+    }
 }
