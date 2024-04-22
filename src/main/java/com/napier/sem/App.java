@@ -917,5 +917,76 @@ public class App {
             String popCount = String.format("%10s %-30s %-30s %-30s %10s", pop.row_num, pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
         }
-      }
+    }
+    public Country getCountry(String code1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "select code, population, continent, name, region, capital "
+                            + "From country "
+                            + "WHERE country.code = '" + code1 + "'";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next()) {
+                Country pop = new Country();
+                pop.code = rset.getString("code");
+                pop.population = rset.getInt("population");
+                pop.continent = rset.getString("continent");
+                pop.name = rset.getString("name");
+                pop.region = rset.getString("region");
+                pop.capital = rset.getInt("capital");
+                return pop;
+            } else
+                return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+
+    //Inetegeration Test get City population information
+    public City getCity(String code2)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ct.countryCode, c.name as Country, ct.name As  City, ct.district, ct.population, c.continent " +
+                            "from city as ct Join country as c ON ct.CountryCode = c.code  " +
+                            "WHERE ct.countryCode = '" + code2 + "'";
+
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new City if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                City pop = new City();
+                pop.population = rset.getInt("population");
+                pop.name = rset.getString("city");
+                pop.district = rset.getString("district");
+                pop.countryCode = rset.getString("countryCode");
+                pop.country = rset.getString("Country");
+                pop.continent = rset.getString("Continent");
+                return pop;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
     }
