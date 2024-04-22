@@ -238,6 +238,115 @@ public class AppTest {
         app.printTopNCountriesInRegPopulation(topNCountriesRegPop);
     }
 
+
+    //Unit Tests for Report 7 - All the cities in the World  organised by largest population to smallest.
+    @Test
+    void printCityPopTestNull()
+    {
+        app.printCityPop(null);
+    }
+
+    @Test
+    void printCityPopTestContainsNull()
+    {
+        ArrayList<City> CityPop7 = new ArrayList<City>();
+        CityPop7.add(null);
+        app.printCityPop(CityPop7);
+    }
+
+    @Test
+    void printCityPopTestEmpty()
+    {
+        ArrayList<City>CityPop7 = new ArrayList<City>();
+        app.printCityPop(CityPop7);
+    }
+
+    @Test
+    void printCityPop()
+    {
+        ArrayList<City> CityPop7 = new ArrayList<City>();
+        City pop = new City();
+        pop.countryCode = "USA";
+        pop.population = 8008278;
+        pop.name = "United States";
+        pop.district = "New York";
+        CityPop7.add(pop);
+        app. printCityPop(CityPop7);
+    }
+
+    //Unit Tests for Report 8 - All the cities in a continent organised by largest population to smallest.
+    @Test
+    void printCityPop8TestNull()
+    {
+        app.printCityPop8(null);
+    }
+
+    @Test
+    void printCityPop8TestContainsNull()
+    {
+        ArrayList<City> CityPop8 = new ArrayList<City>();
+        CityPop8.add(null);
+        app.printCityPop8(CityPop8);
+    }
+
+    @Test
+    void printCityPop8TestEmpty()
+    {
+        ArrayList<City>CityPop8 = new ArrayList<City>();
+        app.printCityPop8(CityPop8);
+    }
+
+    @Test
+    void printCityPop8()
+    {
+        ArrayList<City> CityPop8 = new ArrayList<City>();
+        City pop = new City();
+        pop.countryCode = "USA";
+        pop.population = 8008278;
+        pop.name = "United States";
+        pop.country = "New York";
+        pop.region = " New York";
+        CityPop8.add(pop);
+        app. printCityPop8(CityPop8);
+    }
+
+
+    //Unit Tests for Report 9 - All the cities in a region organised by largest population to smallest.
+    @Test
+    void printCityPop9TestNull()
+    {
+        app.printCityPop9(null);
+    }
+
+    @Test
+    void printCityPop9TestContainsNull()
+    {
+        ArrayList<City> CityPop9 = new ArrayList<City>();
+        CityPop9.add(null);
+        app.printCityPop9(CityPop9);
+    }
+
+    @Test
+    void printCityPop9TestEmpty()
+    {
+        ArrayList<City>CityPop9 = new ArrayList<City>();
+        app.printCityPop9(CityPop9);
+    }
+
+    @Test
+    void printCityPop9()
+    {
+        ArrayList<City> CityPop9 = new ArrayList<City>();
+        City pop = new City();
+        pop.countryCode = "USA";
+        pop.population = 8008278;
+        pop.name = "United States";
+        pop.country = "New York";
+        pop.region = "New York";
+        CityPop9.add(pop);
+        app. printCityPop9(CityPop9);
+    }
+
     //Unit Tests for Report 10 - All the cities in a country organised by largest population to smallest.
     @Test
     void printCityPopulation10TestNull()
