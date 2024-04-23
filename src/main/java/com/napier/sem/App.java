@@ -1379,6 +1379,129 @@ public class App {
     }
 
 
+    public ArrayList<City> getAllCapCitiesContinent( String cont1, int limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "select city.name as name, country.name as country, country.continent as continent, city.population as population "
+                            + "FROM city inner join country on city.id = country.capital "
+                            + "WHERE continent = '"+ cont1 +"' "
+                            + "Order by city.population desc LIMIT "+ limit1;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> population21 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.name = rset.getString("name");
+                pop.country = rset.getString("country");
+                pop.population = rset.getInt("population");
+                population21.add(pop);
+            }
+            return population21;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the capital cities in a Continent organised by largest population to smallest..
+     *
+     * @param population21 The list of All the capital cities in a Continent organised by largest population to smallest to print.
+     */
+    public void printAllCapCitiesContinent(ArrayList<City> population21) {
+        // Check Population is not null
+        if (population21 == null)
+        {
+            System.out.println("No Capital City Population");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "All the capital cities in a Continent organised by largest population to smallest."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-40s %-40s %30s", "Name", "Country", "Population"));
+        // Loop over all Retrieved Populations in the list
+        // Check if query returned values.
+        for (City pop : population21) {
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-40s %-40s %30s", pop.name, pop.country, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
+    /**
+     * Gets the All the capital cities in a Continent organised by largest population to smallest.
+     *
+     * @return A list of All the capital cities in a Continent organised by largest population to smallest, or null if there is an error.
+     */
+
+    public ArrayList<City> getAllCapCitiesRegion( String reg1, int limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "select city.name as name, country.name as country, country.region as region, city.population as population "
+                            + "FROM city inner join country on city.id = country.capital "
+                            + "WHERE region = '"+ reg1 +"' "
+                            + "Order by city.population desc LIMIT "+ limit1;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> population22 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.name = rset.getString("name");
+                pop.country = rset.getString("country");
+                pop.population = rset.getInt("population");
+                population22.add(pop);
+            }
+            return population22;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the capital cities in a Region organised by largest population to smallest..
+     *
+     * @param population22 The list of All the capital cities in a Region organised by largest population to smallest to print.
+     */
+    public void printAllCapCitiesRegion(ArrayList<City> population22) {
+        // Check Population is not null
+        if (population22 == null)
+        {
+            System.out.println("No Capital City Population");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "All the capital cities in a Region organised by largest population to smallest."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-40s %-40s %30s", "Name", "Country", "Population"));
+        // Loop over all Retrieved Populations in the list
+        // Check if query returned values.
+        for (City pop : population22) {
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-40s %-40s %30s", pop.name, pop.country, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
+
+
+
     /**
      * Report#20 Gets the top N populated capital cities in the world where N is provided.
      *

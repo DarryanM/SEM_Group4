@@ -631,6 +631,74 @@ public class AppTest {
         app.printAllCapCitiesWorld(population20);
     }
 
+    // Report 18 Testing all the capital cities in a continent organised by largest population to smallest print Method
+    @Test
+    void printCapitalPopContientTestNull()
+    {
+        app.printAllCapCitiesContinent(null);
+    }
+
+    @Test
+    void printCapitalPopContinentTestContainsNull()
+    {
+        ArrayList<City> population21 = new ArrayList<City>();
+        population21.add(null);
+        app.printAllCapCitiesContinent(population21);
+    }
+
+    @Test
+    void printCapitalPopcontinentTestEmpty()
+    {
+        ArrayList<City>population21 = new ArrayList<City>();
+        app.printAllCapCitiesContinent(population21);
+    }
+
+    @Test
+    void printCapitalPopcontinent()
+    {
+        ArrayList<City> population21 = new ArrayList<City>();
+        City pop = new City();
+        pop.population = 8008278;
+        pop.name = "United States";
+        pop.country = "Bahamas";
+        population21.add(pop);
+        app.printAllCapCitiesContinent(population21);
+    }
+
+    // Report 19 Testing all the capital cities in a region  organised by largest population to smallest print Method
+    @Test
+    void printCapitalPopRegionTestNull()
+    {
+        app.printAllCapCitiesRegion(null);
+    }
+
+    @Test
+    void printCapitalPopRegionTestContainsNull()
+    {
+        ArrayList<City> population22 = new ArrayList<City>();
+        population22.add(null);
+        app.printAllCapCitiesRegion(population22);
+    }
+
+    @Test
+    void printCapitalPopRegionTestEmpty()
+    {
+        ArrayList<City>population22 = new ArrayList<City>();
+        app.printAllCapCitiesRegion(population22);
+    }
+
+    @Test
+    void printCapitalPopRegion()
+    {
+        ArrayList<City> population22 = new ArrayList<City>();
+        City pop = new City();
+        pop.population = 8008278;
+        pop.name = "United States";
+        pop.country = "Bahamas";
+        population22.add(pop);
+        app.printAllCapCitiesRegion(population22);
+    }
+
 
     // Report 20 Testing of top N populated capital cities in The world where N is provided print Method
     @Test
