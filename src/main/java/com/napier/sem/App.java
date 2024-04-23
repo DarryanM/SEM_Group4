@@ -108,6 +108,18 @@ public class App {
         // Display district population results
         a.printTopCityInCountry(nCityTopCtry);
 
+        // Report 16 Extract top N populated cities in a District where N was provided
+        ArrayList<City> population19 = a.getTopNPopCitiesDistrict("Seol",3);
+
+        //Display Results of top N populated cities in a District where N was provided
+        a.printTopNPopCitiesDistrict(population19);
+
+        // Report 17 Extract All the capital cities in the world organised by largest population to smallest
+        ArrayList<City> population20 = a.getAllCapCitiesWorld(999999);
+
+        //Display Results of All the capital cities in the world organised by largest population to smallest
+        a.printAllCapCitiesWorld(population20);
+
         // Report 20 Extract All top N populated capital cities in the world where N is provided by the user
         ArrayList<City> population23 = a.getTopNPopCapCitiesWorld(5);
 
@@ -1238,6 +1250,134 @@ public class App {
             return null;
         }
     }
+
+    /**
+     * Gets the top N populated cities in a District where N is provided.
+     *
+     * @return A list of the top N populated cities in a District where N was provided  sorted in descending order, or null if there is an error.
+     */
+
+    public ArrayList<City> getTopNPopCitiesDistrict(String dist1, int limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "WITH district1 as (select city.name as name, country.name as country, district, city.population as population, RANK ()  "
+                            + "OVER(PARTITION BY district ORDER BY population DESC) row_num "
+                            + "FROM city inner join country on city.countrycode = country.code) "
+                            + "SELECT row_num, name, country, district, population "
+                            + "FROM district1  WHERE district = '"+ dist1 + "' LIMIT " + limit1;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> population19 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.row_num = rset.getInt("row_num");
+                pop.name = rset.getString("name");
+                pop.country = rset.getString("country");
+                pop.district = rset.getString("district");
+                pop.population = rset.getInt("population");
+                population19.add(pop);
+            }
+            return population19;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of the top N populated cities in a District where N is provided.
+     *
+     * @param population19 The list of  the top N populated cities in a District where N was provided to print.
+     */
+    public void printTopNPopCitiesDistrict(ArrayList<City> population19) {
+        // Check Population is not null
+        if (population19 == null)
+        {
+            System.out.println("No Top City Population");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "The Top N populated cities in a District where N was provided."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%10s %-40s %-40s %-40s %30s", "No.", "Name", "Country", "District", "Population"));
+        // Loop over all Retrieved Populations in the list
+        // Check if query returned values.
+        for (City pop : population19) {
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%10s %-40s %-40s %-40s %30s", pop.row_num, pop.name, pop.country,  pop.district, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
+    /**
+     * Report #17 Gets the All the capital cities in the world organised by largest population to smallest.
+     *
+     * @return A list of All the capital cities in the world organised by largest population to smallest, or null if there is an error.
+     */
+
+    public ArrayList<City> getAllCapCitiesWorld(int limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "select city.name as name, country.name as country, district, city.population as population "
+                            + "FROM city inner join country on city.id = country.capital "
+                            + "ORDER BY population DESC limit " + limit1;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> population20 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.name = rset.getString("name");
+                pop.country = rset.getString("country");
+                pop.population = rset.getInt("population");
+                population20.add(pop);
+            }
+            return population20;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of All the capital cities in the world organised by largest population to smallest..
+     *
+     * @param population20 The list of All the capital cities in the world organised by largest population to smallest to print.
+     */
+    public void printAllCapCitiesWorld(ArrayList<City> population20) {
+        // Check Population is not null
+        if (population20 == null)
+        {
+            System.out.println("No Capital City Population");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "All the capital cities in the world organised by largest population to smallest."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-40s %-40s %30s", "Name", "Country", "Population"));
+        // Loop over all Retrieved Populations in the list
+        // Check if query returned values.
+        for (City pop : population20) {
+            if (pop == null)
+                continue;
+            String popCount = String.format("%-40s %-40s %30s", pop.name, pop.country, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
 
     /**
      * Report#20 Gets the top N populated capital cities in the world where N is provided.

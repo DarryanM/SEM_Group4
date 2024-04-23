@@ -561,6 +561,77 @@ public class AppTest {
         app.printTopCityInCountry(nCityTopCtry);
     }
 
+    // Report 16 Testing of top N populated cities in a district where N is provided print Method
+    @Test
+    void printTopNPopCitiesDistrictTestNull()
+    {
+        app.printTopNPopCitiesDistrict(null);
+    }
+
+    @Test
+    void printTopNPopCitiesDistrictTestContainsNull()
+    {
+        ArrayList<City> population19 = new ArrayList<City>();
+        app.printTopNPopCitiesDistrict(population19);
+    }
+
+    @Test
+    void printTopNPopCitiesDistrictTestEmpty()
+    {
+        ArrayList<City> population19 = new ArrayList<City>();
+        app.printTopNPopCitiesDistrict(population19);
+    }
+
+    @Test
+    void printTopNPopCitiesDistrict()
+    {
+        ArrayList<City> population19 = new ArrayList<City>();
+        City pop = new City();
+        pop.population = 10000;
+        pop.name = "city";
+        pop.country = "country";
+        pop.row_num = 40;
+        pop.district = "district";
+        population19.add(pop);
+        app.printTopNPopCitiesDistrict(population19);
+    }
+
+    // Report 17 Testing all the capital cities in the world organised by largest population to smallest print Method
+    @Test
+    void printAllCapCitiesWorldTestNull()
+    {
+        app.printAllCapCitiesWorld(null);
+    }
+
+    @Test
+    void printAllCapCitiesWorldTestContainsNull()
+    {
+        ArrayList<City> population20 = new ArrayList<City>();
+        app.printAllCapCitiesWorld(population20);
+    }
+
+    @Test
+    void printAllCapCitiesWorldTestEmpty()
+    {
+        ArrayList<City> population20 = new ArrayList<City>();
+        app.printAllCapCitiesWorld(population20);
+    }
+
+    @Test
+    void printAllCapCitiesWorld()
+    {
+        ArrayList<City> population20 = new ArrayList<City>();
+        City pop = new City();
+        pop.population = 10000;
+        pop.name = "city";
+        pop.country = "country";
+        pop.row_num = 40;
+        pop.district = "district";
+        population20.add(pop);
+        app.printAllCapCitiesWorld(population20);
+    }
+
+
     // Report 20 Testing of top N populated capital cities in The world where N is provided print Method
     @Test
     void printTopNPopCapCitiesWorldNull()

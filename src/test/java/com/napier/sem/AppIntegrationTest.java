@@ -94,7 +94,12 @@ public class AppIntegrationTest {
         assertEquals(pop.continent, "North America");
         assertEquals(pop.region, "North America");
         app.getTopNCountryPopulation(10);
+    }
 
+    //Test For Report 4 Failure
+    @Test
+    void testGetTopNCountryPopulationFail()
+    {
         //Testing if SQL syntax incorrect Catch will run
         app.getTopNCountryPopulation(-1);
     }
@@ -112,7 +117,12 @@ public class AppIntegrationTest {
         assertEquals(pop.continent, "North America");
         assertEquals(pop.region, "North America");
         app.getTopNCountriesInContPopulation("North America", 3);
+    }
 
+    //Test For Report 5 Failure
+    @Test
+    void testGetTopNCountriesInContPopulationFail()
+    {
         //Testing if SQL syntax incorrect Catch will run
         app.getTopNCountriesInContPopulation("XYZ", -10);
     }
@@ -131,8 +141,16 @@ public class AppIntegrationTest {
         assertEquals(pop.region, "North America");
         app.getTopNCountriesInRegPopulation("North America", 3);
 
+    }
+
+    //Test For Report 6 Failure
+    @Test
+    void testGetTopNCountriesInRegPopulationFail()
+    {
+
         //Testing if SQL syntax incorrect Catch will run
         app.getTopNCountriesInRegPopulation("XYZ", -10);
+
     }
 
     //Integration test for Report 7 - All the cities in the world organised by largest population to smallest.
@@ -276,6 +294,49 @@ public class AppIntegrationTest {
         assertEquals(pop.country, "South Korea");
         assertEquals(pop.district,"Seoul");
         app.getTopCityInCountry("South Korea", 3);
+    }
+
+    // Test Report 16 the top N populated cities in a district where N is provided by the user.
+    @Test
+    void testgetTopNPopCitiesDistrict()
+    {
+        ArrayList<City> population19 = app.getTopNPopCitiesDistrict("South Korea",3);
+
+        City pop = app.getDistrict("Seoul");
+        assertEquals(pop.population,9981619);
+        assertEquals(pop.name,"Seoul");
+        assertEquals(pop.country, "South Korea");
+        assertEquals(pop.district,"Seoul");
+        app.getTopNPopCitiesDistrict("Seoul", 3);
+    }
+
+    //Test For Report 16 Failure
+    @Test
+    void testgetTopNPopCitiesDistrictFail()
+    {
+        //Testing if SQL syntax incorrect Catch will run
+        app.getTopNPopCitiesDistrict("xyz",-2);
+    }
+
+    // Test Report 17 all the capital cities in the world organised by largest population to smallest
+    @Test
+    void testGetAllCapCitiesWorld()
+    {
+        ArrayList<City> population20 = app.getAllCapCitiesWorld(99999);
+
+        City pop = app.getCapitalCity("CHN");
+        assertEquals(pop.population,7472000);
+        assertEquals(pop.name,"Peking");
+        assertEquals(pop.district,"Peking");
+        app.getAllCapCitiesWorld(99999);
+    }
+
+    //Test For Report 17 Failure
+    @Test
+    void testGetAllCapCitiesWorldFail()
+    {
+        //Testing if SQL syntax incorrect Catch will run
+        app.getAllCapCitiesWorld(-2);
     }
 
     // Test Report -20 The top N populated Capital Cities in the World where N is provided
