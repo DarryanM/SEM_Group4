@@ -15,62 +15,61 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        // Report 1 Extract Country Population
+        // Report 1 Extract All the countries in the world organised by largest population to smallest
         ArrayList<Country> population = a.getCountryPopulation(999999);
 
         //Display Results
         a.printCountryPopulation(population);
 
-        // Report 2 Extract Continent Population
+        // Report 2 Extract All the countries in a continent organised by largest population to smallest
         ArrayList<Country> population2 = a.getContinentPopulation("Europe");
 
         //Display Continent Population Results
         a.printContinentPopulation(population2);
 
-        // Report 3 Extract Region Population
+        // Report 3 All the countries in a region organised by largest population to smallest
         ArrayList<Country> population3 = a.getRegionPopulation("Caribbean");
 
         //Display Region Population Results
         a.printRegionPopulation(population3);
 
-        // Extract Top Countries Population
+        // Report 4 The top N populated countries in the world where N is provided by the user
         ArrayList<Country> topPopulation = a.getTopNCountryPopulation(10);
 
         //Display Results
         a.printTopNCountryPopulation(topPopulation);
 
-        // Extract Top N Countries in a Continent
+        // Report 5 The top N populated countries in a continent where N is provided by the user
         ArrayList<Country> topNCountriesContPop = a.getTopNCountriesInContPopulation("North America", 3);
 
         //Display Results
         a.printTopNCountriesInContPopulation(topNCountriesContPop);
 
-        // Extract Top N Countries in a Region
+        // Report 6 The top N populated countries in a region where N is provided by the user
         ArrayList<Country> topNCountriesRegPop = a.getTopNCountriesInRegPopulation("North America", 3);
 
         //Display Results
         a.printTopNCountriesInRegPopulation(topNCountriesRegPop);
 
-        // Extract City Population in the world
+        // Report 7 Extract All the cities in the world organised by largest population to smallest
         ArrayList<City> cityPop7 = a.getCityPop();
 
         //Display Results for City population in the world
         a.printCityPop(cityPop7);
 
-        // Extract City Population in a continent
+        // Report 8 Extract All the cities in a continent organised by largest population to smallest
         ArrayList<City> cityPop8 = a.getCityPopconti("Asia",999999);
 
         //Display Results for city population in a continent
         a.printCityPop8(cityPop8);
 
-        // Extract City Population in a region
+        // Report 9 Extract All the cities in a region organised by largest population to smallest.
         ArrayList<City> cityPop9 = a.getCityPopregi("Eastern Asia", 999999);
 
         //Display Results for city population in a region
         a.printCityPop9(cityPop9);
 
-
-        //Report 10 - Cities in a country from largest to smallest population
+        //Report 10 - All the cities in a country organised by largest population to smallest.
         // Extract city population information
         ArrayList<City> citypop10 = a.getCityPopulation10("China", 5);
 
@@ -84,32 +83,32 @@ public class App {
         // Display district population results
         a.printDistrictPopulation(districtPopulation11);
 
-        // Report 12 - The top N populated cities in the world where N is provided by the user.
+        // Report 12 - Extract The top N populated cities in the world where N is provided by the user.
         ArrayList<City> topNCityPopWorld = a.getTopNCityPopWorld12(5);
 
         //Display Results of Report 12
         a.printGetTopNCityPopWorld12(topNCityPopWorld);
-        // Extract Top City Population in a Continent
+
+        // Report 13 Extract The top N populated cities in a continent where N is provided by the user.
         ArrayList<City> nCityTopCont = a.getTopCityInContinent("Asia",3);
 
         //Display Results
         a.printTopCityInContinent(nCityTopCont);
 
-
-        // Extract district population information
+        // Report 14 Extract The top N populated cities in a region where N is provided by the user
         ArrayList<City> nCityTopReg = a.getTopCityInRegion("Eastern Asia", 3);
 
         // Display district population results
         a.printTopCityInRegion(nCityTopReg);
 
-        // Extract district population information
+        // Report 15 Extract The top N populated cities in a country where N is provided by the user.
         ArrayList<City> nCityTopCtry = a.getTopCityInCountry("South Korea",3);
 
         // Display district population results
         a.printTopCityInCountry(nCityTopCtry);
 
         // Report 16 Extract top N populated cities in a District where N was provided
-        ArrayList<City> population19 = a.getTopNPopCitiesDistrict("Seol",3);
+        ArrayList<City> population19 = a.getTopNPopCitiesDistrict("Seoul",3);
 
         //Display Results of top N populated cities in a District where N was provided
         a.printTopNPopCitiesDistrict(population19);
@@ -152,19 +151,19 @@ public class App {
         a.printTopNPopCapCitiesRegion(population25);
 
         //Report 23 - Extract The population of people, people living in cities, and people not living in cities in each continent
-        ArrayList<City> population26 = a.getLivingPopContinent(5);
+        ArrayList<City> population26 = a.getLivingPopContinent(999999);
 
         //Display Results of The population of people, people living in cities, and people not living in cities in each continent
         a.printLivingPopContinent(population26);
 
-        // Extract The population of people, people living in cities, and people not living in cities in each Region
-        ArrayList<City> PopLivReg = a.getLivingPopRegion(10);
+        // Report 24 Extract The population of people, people living in cities, and people not living in cities in each Region
+        ArrayList<City> PopLivReg = a.getLivingPopRegion(999999);
 
         //Display Results of The population of people, people living in cities, and people not living in cities in each Region
         a.printLivingPopRegion(PopLivReg);
 
-        // Extract The population of people, people living in cities, and people not living in cities in each Country
-        ArrayList<City> PopLivCtry = a.getLivingPopCountry(10);
+        // Report 25 Extract The population of people, people living in cities, and people not living in cities in each Country
+        ArrayList<City> PopLivCtry = a.getLivingPopCountry(999999);
 
         //Display Results of The population of people, people living in cities, and people not living in cities in each Country
         a.printLivingPopCountry(PopLivCtry);
@@ -286,21 +285,21 @@ public class App {
         // Print  header
         System.out.println(String.format("%-20s ", "All the countries in the world organised by largest population to smallest."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-10s %10s %-50s %-30s %-30s %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
+        System.out.println(String.format("%-10s %-50s %-30s %-30s %10s %10s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
         // Loop over all Retrieved Populations in the list
         for (Country pop : population) {
 
             if (pop == null)
                 continue;
 
-            String popCount = String.format("%-10s %10s %-50s %-30s %-30s %-30s", pop.code, pop.population, pop.name, pop.capital, pop.continent, pop.region);
+            String popCount = String.format("%-10s %-50s %-30s %-30s %10s %10s", pop.code, pop.name, pop.continent, pop.region, pop.population, pop.capital);
             System.out.println(popCount);
         }
 
 
     }
 
-
+//COUNTRY REPORTS
     /**
      * Gets the population of all countries in a continent.
      *
@@ -352,7 +351,7 @@ public class App {
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "Population of All the countries in a continent organised by largest population to smallest."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-10s %10s %-50s %-10s %-30s %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
+        System.out.println(String.format("%-10s %-50s %-30s %-30s %10s %10s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
         // Loop over all Retrieved Populations in the list
         // Check if query returned values.
         for (Country pop : population2) {
@@ -360,7 +359,7 @@ public class App {
             if (pop == null)
                 continue;
 
-            String popCount = String.format("%-10s %10s %-50s %10s %-30s %-30s", pop.code, pop.population, pop.name, pop.capital, pop.continent, pop.region);
+            String popCount = String.format("%-10s %-50s %-30s %-30s %10s %10s", pop.code, pop.name, pop.continent, pop.region, pop.population, pop.capital);
             System.out.println(popCount);
         }
     }
@@ -419,14 +418,14 @@ public class App {
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "Population of All the countries in a Region organised by largest population to smallest."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-10s %10s %-50s %-30s %-30s %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
+        System.out.println(String.format("%-10s %-50s %-30s %-30s %10s %10s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
         // Loop over all Retrieved Populations in the list
         // Check if query returned values.
         for (Country pop : population3) {
             if (pop == null)
                 continue;
 
-            String popCount = String.format("%-10s %10s %-50s %-30s %-30s %-30s", pop.code, pop.population, pop.name, pop.capital, pop.continent, pop.region);
+            String popCount = String.format("%-10s %-50s %-30s %-30s %10s %10s", pop.code, pop.name, pop.continent, pop.region, pop.population, pop.capital);
             System.out.println(popCount);
         }
     }
@@ -488,14 +487,14 @@ public class App {
             System.out.println(String.format("%-20s ", " "));
             System.out.println(String.format("%-20s ", "All the Top N countries in the world with N provided by user."));
             System.out.println(String.format("%-20s ", " "));
-            System.out.println(String.format("%-10s %10s %-50s %-30s %-30s %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
+            System.out.println(String.format("%-10s %-50s %-30s %-30s %10s %10s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
             // Loop over all Retrieved Populations in the list
             for (Country pop : topPopulation) {
 
                 if (pop == null)
                     continue;
 
-                String popCount = String.format("%-10s %10s %-50s %-30s %-30s %-30s", pop.code, pop.population, pop.name, pop.capital, pop.continent, pop.region);
+                String popCount = String.format("%-10s %-50s %-30s %-30s %10s %10s", pop.code, pop.name, pop.continent, pop.region, pop.population, pop.capital);
                 System.out.println(popCount);
             }
         }
@@ -557,14 +556,14 @@ public class App {
             System.out.println(String.format("%-20s ", " "));
             System.out.println(String.format("%-20s ", "All the TOP N countries in a Continent with N value provided by user."));
             System.out.println(String.format("%-20s ", " "));
-            System.out.println(String.format("%-10s %10s %-50s %-30s %-30s %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
+            System.out.println(String.format("%-10s %-50s %-30s %-30s %10s %10s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
             // Loop over all Retrieved Populations in the list
             for (Country pop : topNCountriesContPop) {
 
                 if (pop == null)
                     continue;
 
-                String popCount = String.format("%-10s %10s %-50s %-30s %-30s %-30s", pop.code, pop.population, pop.name, pop.capital, pop.continent, pop.region);
+                String popCount = String.format("%-10s %-50s %-30s %-30s %10s %10s", pop.code, pop.name, pop.continent, pop.region, pop.population, pop.capital);
                 System.out.println(popCount);
             }
 
@@ -626,20 +625,20 @@ public class App {
             System.out.println(String.format("%-20s ", " "));
             System.out.println(String.format("%-20s ", "All the TOP N countries in a Region with N value provided by user."));
             System.out.println(String.format("%-20s ", " "));
-            System.out.println(String.format("%-10s %10s %-50s %-20s %-25s %-30s", "Code", "Population", "Country", "Capital", "Continent", "Region"));
+            System.out.println(String.format("%-10s %-50s %-30s %-30s %10s %10s", "Code", "Name", "Continent", "Region", "Population", "Capital"));
             // Loop over all Retrieved Populations in the list
             for (Country pop : topNCountriesRegPop) {
 
                 if (pop == null)
                     continue;
 
-                String popCount = String.format("%-10s %10s %-50s %-20s %-25s %-30s", pop.code, pop.population, pop.name, pop.capital, pop.continent, pop.region);
+                String popCount = String.format("%-10s %-50s %-30s %-30s %10s %10s", pop.code, pop.name, pop.continent, pop.region, pop.population, pop.capital);
                 System.out.println(popCount);
             }
         }
 
 
-
+//CITY REPORTS
 
     /**
      * Gets the All Cities population in the world .
@@ -696,14 +695,14 @@ public class App {
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "All the Cities in the world organised by largest population to smallest."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-20s %-20s %-20s %-30s %10s", "Country Code", "city", "Country", "District", "Population"));
+        System.out.println(String.format("%-30s %-40s %-50s %10s", "Name", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
         for (City pop : CityPop7) {
 
             if (pop == null)
                 continue;
 
-            String popCount = String.format("%-20s %-20s %-20s %-30s %10s", pop.countryCode, pop.name, pop.countryCode, pop.district, pop.population);
+            String popCount = String.format("%-30s %-40s %-50s %10s", pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
         }
     }
@@ -726,7 +725,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT ct.countryCode, c.name As Country, ct.name As City, ct.population, c.continent " +
+                    "SELECT c.name As Country, ct.name As City, ct.population, c.continent, ct.district " +
                             " FROM city as ct Join country as c ON ct.CountryCode = c.code " +
                             " WHERE c.continent = '" + conti1 +"' "+
                             "Order by ct.population desc LIMIT "+ limit1;
@@ -741,7 +740,7 @@ public class App {
                 City pop = new City();
                 pop.population = rset.getInt("population");
                 pop.name = rset.getString("city");
-                pop.countryCode = rset.getString("countryCode");
+                pop.district = rset.getString("district");
                 pop.country = rset.getString("Country");
                 pop.continent = rset.getString("Continent");
                 cityPop8.add(pop);
@@ -771,14 +770,14 @@ public class App {
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "All the Cities in a continent organised by largest population to smallest."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-20s %-20s %-20s %-30s %10s", "Country Code", "city", "Country", "Continent", "Population"));
+        System.out.println(String.format("%-30s %-40s %-50s %10s", "Name", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
         for (City pop : CityPop8) {
 
             if (pop == null)
                 continue;
 
-            String popCount = String.format("%-20s %-20s %-20s %-30s %10s", pop.countryCode, pop.name, pop.country, pop.continent, pop.population);
+            String popCount = String.format("%-30s %-40s %-50s %10s", pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
         }
     }
@@ -797,7 +796,7 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT ct.countryCode, c.name As Country, ct.name As  City, ct.population, c.region  " +
+                    "SELECT c.name As Country, ct.name As  City, ct.population, c.region, ct.district  " +
                             " from city as ct  Join country as c ON ct.CountryCode = c.code  " +
                             " WHERE c.region = '" + region1 +"' "+
                             "Order by ct.population desc LIMIT "+ limit1;
@@ -812,7 +811,7 @@ public class App {
                 City pop = new City();
                 pop.population = rset.getInt("population");
                 pop.name = rset.getString("city");
-                pop.countryCode = rset.getString("countryCode");
+                pop.district = rset.getString("district");
                 pop.country = rset.getString("Country");
                 pop.region = rset.getString("region");
 
@@ -843,14 +842,14 @@ public class App {
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "All the Cities in a region organised by largest population to smallest."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-20s %-20s %-20s %-30s %10s", "Country Code", "city", "Country", "Region", "Population"));
+        System.out.println(String.format("%-30s %-40s %-50s %10s", "Name", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
         for (City pop : CityPop9) {
 
             if (pop == null)
                 continue;
 
-            String popCount = String.format("%-20s %-20s %-20s %-30s %10s", pop.countryCode, pop.name, pop.country, pop.region, pop.population);
+            String popCount = String.format("%-30s %-40s %-50s %10s", pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
         }
     }
@@ -904,10 +903,11 @@ public class App {
         // Print header
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("Cities in a country from largest to smallest population"));
-        System.out.println(String.format("%-20s %-20s %-30s %-30s", "Name", "Country", "District", "Population"));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-30s %-40s %-50s %10s", "Name", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
         for (City pop : citypop10) {
-            String popCount = String.format("%-20s %-20s %-30s %-30s", pop.name, pop.country, pop.district, pop.population);
+            String popCount = String.format("%-30s %-40s %-50s %10s", pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
         }
     }
@@ -955,13 +955,14 @@ public class App {
         // Print header
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("Cities in a district from largest to smallest population"));
-        System.out.println(String.format("%-20s %-30s %-20s %-30s", "City Name", "Country", "District", "Population"));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-30s %-40s %-50s %10s", "City Name", "Country", "District", "Population"));
         // Loop over all retrieved populations in the list
         for (City district : districtpopulation11) {
 
             if (district == null)
                 continue;
-            String popCount = String.format("%-20s %-30s %-20s %-30s", district.name, district.country, district.district, district.population);
+            String popCount = String.format("%-30s %-40s %-50s %10s", district.name, district.country, district.district, district.population);
             System.out.println(popCount);
         }
     }
@@ -1013,12 +1014,12 @@ public class App {
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "The top N populated cities in the world where N is provided by the user."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-30s %-30s %-30s %-30s", "Name", "Country", "District", "Population"));
+        System.out.println(String.format("%-30s %-40s %-50s %10s", "Name", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
         for (City pop : topNCityPopWorld12) {
             if (pop == null)
                 continue;
-            String popCount = String.format("%-30s %-30s %-30s %-30s", pop.name, pop.country, pop.district, pop.population);
+            String popCount = String.format("%-30s %-40s %-50s %10s", pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
         }
     }
@@ -1073,15 +1074,16 @@ public class App {
             return;
         }
         // Print header
+        System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "The top N populated cities in a continent where N is provided by the user."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%10s %-30s %-30s %-30s %-30s %10s", "row_num", "City", "Country", "Continent", "District",  "Population"));
+        System.out.println(String.format("%-30s %-40s %-50s %10s", "Name", "Country", "District",  "Population"));
         // Loop over all Retrieved Populations in the list
         for (City pop : nCityTopCont) {
             if (pop == null)
                 continue;
 
-            String popCount = String.format("%10s %-30s %-30s %-30s %-30s %10s", pop.row_num, pop.name, pop.country, pop.continent, pop.district,  pop.population);
+            String popCount = String.format("%-30s %-40s %-50s %10s", pop.name, pop.country, pop.district,  pop.population);
             System.out.println(popCount);
         }
     }
@@ -1139,15 +1141,16 @@ public class App {
         }
 
         // Print header
+        System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "The top N populated cities in a region where N is provided by the user."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%10s %-30s %-30s %-30s %-30s %10s", "row_num", "City", "Country", "District", "Region", "Population"));
+        System.out.println(String.format("%-30s %-40s %-50s %10s", "Name", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
         for (City pop : nCityTopReg) {
 
             if (pop == null) continue;
 
-            String popCount = String.format("%10s %-30s %-30s %-30s %-30s %10s", pop.row_num, pop.name, pop.country, pop.district, pop.region, pop.population);
+            String popCount = String.format("%-30s %-40s %-50s %10s", pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
         }
     }
@@ -1206,85 +1209,14 @@ public class App {
         // Print header
         System.out.println(String.format("%-20s ", "The top N populated cities in a country where N is provided by the user."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%10s %-30s %-30s %-30s %10s", "row_num", "City", "Country", "District", "Population"));
+        System.out.println(String.format("%-30s %-40s %-50s %10s", "Name", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
         for (City pop : nCityTopCtry) {
 
             if(pop == null) continue;
 
-            String popCount = String.format("%10s %-30s %-30s %-30s %10s", pop.row_num, pop.name, pop.country, pop.district, pop.population);
+            String popCount = String.format("%-30s %-40s %-50s %10s", pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
-        }
-    }
-    public Country getCountry(String code1) {
-        try {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "select code, population, continent, name, region, capital "
-                            + "From country "
-                            + "WHERE country.code = '" + code1 + "'";
-
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
-            // Check one is returned
-            if (rset.next()) {
-                Country pop = new Country();
-                pop.code = rset.getString("code");
-                pop.population = rset.getInt("population");
-                pop.continent = rset.getString("continent");
-                pop.name = rset.getString("name");
-                pop.region = rset.getString("region");
-                pop.capital = rset.getInt("capital");
-                return pop;
-            } else
-                return null;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get Country details");
-            return null;
-        }
-    }
-
-    //Inetegeration Test get City population information
-    public City getCity(String code2)
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
-            // Create string for SQL statement
-            String strSelect =
-                    "SELECT ct.countryCode, c.name as Country, ct.name As  City, ct.district, ct.population, c.continent " +
-                            "from city as ct Join country as c ON ct.CountryCode = c.code  " +
-                            "WHERE ct.countryCode = '" + code2 + "'";
-
-
-            // Execute SQL statement
-            ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new City if valid.
-            // Check one is returned
-            if (rset.next())
-            {
-                City pop = new City();
-                pop.population = rset.getInt("population");
-                pop.name = rset.getString("city");
-                pop.district = rset.getString("district");
-                pop.countryCode = rset.getString("countryCode");
-                pop.country = rset.getString("Country");
-                pop.continent = rset.getString("Continent");
-                return pop;
-            }
-            else
-                return null;
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-            System.out.println("Failed to get City details");
-            return null;
         }
     }
 
@@ -1342,18 +1274,19 @@ public class App {
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-20s ", "The Top N populated cities in a District where N was provided."));
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%10s %-40s %-40s %-40s %30s", "No.", "Name", "Country", "District", "Population"));
+        System.out.println(String.format("%-30s %-40s %-50s %10s", "Name", "Country", "District", "Population"));
         // Loop over all Retrieved Populations in the list
         // Check if query returned values.
         for (City pop : population19) {
             if (pop == null)
                 continue;
 
-            String popCount = String.format("%10s %-40s %-40s %-40s %30s", pop.row_num, pop.name, pop.country,  pop.district, pop.population);
+            String popCount = String.format("%-30s %-40s %-50s %10s", pop.name, pop.country, pop.district, pop.population);
             System.out.println(popCount);
         }
     }
 
+//CAPITAL CITY REPORTS
     /**
      * Report #17 Gets the All the capital cities in the world organised by largest population to smallest.
      *
@@ -1923,6 +1856,79 @@ public class App {
 
     // INTEGRATION TESTING QUERIES
     //Inetegeration Test get City population information
+
+    public Country getCountry(String code1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "select code, population, continent, name, region, capital "
+                            + "From country "
+                            + "WHERE country.code = '" + code1 + "'";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next()) {
+                Country pop = new Country();
+                pop.code = rset.getString("code");
+                pop.population = rset.getInt("population");
+                pop.continent = rset.getString("continent");
+                pop.name = rset.getString("name");
+                pop.region = rset.getString("region");
+                pop.capital = rset.getInt("capital");
+                return pop;
+            } else
+                return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country details");
+            return null;
+        }
+    }
+
+    //Inetegeration Test get City population information
+    public City getCity(String code2)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ct.countryCode, c.name as Country, ct.name As  City, ct.district, ct.population, c.continent " +
+                            "from city as ct Join country as c ON ct.CountryCode = c.code  " +
+                            "WHERE ct.countryCode = '" + code2 + "'";
+
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new City if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                City pop = new City();
+                pop.population = rset.getInt("population");
+                pop.name = rset.getString("city");
+                pop.district = rset.getString("district");
+                pop.countryCode = rset.getString("countryCode");
+                pop.country = rset.getString("Country");
+                pop.continent = rset.getString("Continent");
+                return pop;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+
     public City getDistrict(String code2)
     {
         try
@@ -2073,7 +2079,7 @@ public class App {
             // Create string for SQL statement
             String strSelect =
                     "SELECT con1 as country, countrypop, citypop, (countrypop-citypop) as noncitypop, round((citypop/countrypop *100),2) as citypoppercent,  100-round((citypop/countrypop *100),2) as noncitypoppercent "
-                            + "FROM (select sum(city.population) as CityPop, country.name as con1 from city join country on city.countrycode = country.code group by con1) AS A "
+                            + "FROM (select sum(city.population) as cityPop, country.name as con1 from city join country on city.countrycode = country.code group by con1) AS A "
                             + "Join (select sum(country.population) as countrypop, country.name as con2 from country group by con2) AS B "
                             + "ON A.con1 = B.con2 "
                             + " WHERE con1 = '" + country1 +"'";
