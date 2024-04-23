@@ -1773,7 +1773,146 @@ public class App {
             System.out.println(popCount);
         }
     }
+    /**
+     * Gets the The population of people, people living in cities, and people not living in cities in each continent..
+     *
+     * @return A list of The population of people, people living in cities, and people not living in cities in each continent or null if there is an error.
+     */
 
+
+
+    /**
+     * Gets the population of people, people living in cities, and people not living in cities in each Region..
+     *
+     * @return A list of The population of people, people living in cities, and people not living in cities in each Region or null if there is an error.
+     */
+
+    public ArrayList<City> getLivingPopRegion(String region1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT reg1 as region, regionpop, citypop, (regionpop-citypop) as noncitypop, round((citypop/regionpop *100),2) as citypoppercent,  100-round((citypop/regionpop *100),2) as noncitypoppercent   "
+                            + "FROM (select sum(city.population) as CityPop, country.region as reg1 from city join country on city.countrycode = country.code group by reg1) AS A "
+                            + "Join (select sum(country.population) as regionpop, country.region as reg2 from country group by reg2) AS B "
+                            + "ON A.reg1 = B.reg2 "
+                            + "Where reg1 = '" + region1 + "'";
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> PopLivReg = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.region = rset.getString("region");
+                pop.regionpop = rset.getLong("regionpop");
+                pop.citypop = rset.getLong("citypop");
+                pop.noncitypop = rset.getLong("noncitypop");
+                pop.citypoppercent =rset.getDouble("citypoppercent");
+                pop.noncitypoppercent =rset.getDouble("noncitypoppercent");
+                PopLivReg.add(pop);
+            }
+            return PopLivReg;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Regional Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of The population of people, people living in cities, and people not living in cities in each Region.
+     *
+     * @param PopLivReg The list of The population of people, people living in cities, and people not living in cities in each Region to print.
+     */
+    public void printLivingPopRegion(ArrayList<City> PopLivReg) {
+        // Check Population is not null
+        if (PopLivReg == null)
+        {
+            System.out.println("No Population Information");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "The population of people, people living in cities, and people not living in cities in each Region."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-40s %30s %30s %30s %20s %20s", "Region", "Region Population", "Region City Population", "Non Region City Population", "City Population %", "Non City Population %"));
+        // Loop over all Retrieved Populations in the list
+        // Check if query returned values.
+        for (City pop : PopLivReg) {
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-40s %30s %30s %30s %20s %20s", pop.region, pop.regionpop, pop.citypop, pop.noncitypop, pop.citypoppercent, pop.noncitypoppercent );
+            System.out.println(popCount);
+        }
+    }
+
+    /**
+     * Gets the population of people, people living in cities, and people not living in cities in each Region..
+     *
+     * @return A list of The population of people, people living in cities, and people not living in cities in each Region or null if there is an error.
+     */
+
+    public ArrayList<City> getLivingPopCountry(int limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT con1 as country, countrypop, citypop, (countrypop-citypop) as noncitypop, round((citypop/countrypop *100),2) as citypoppercent,  100-round((citypop/countrypop *100),2) as noncitypoppercent "
+                            + "FROM (select sum(city.population) as CityPop, country.name as con1 from city join country on city.countrycode = country.code group by con1) AS A "
+                            + "Join (select sum(country.population) as countrypop, country.name as con2 from country group by con2) AS B "
+                            + "ON A.con1 = B.con2 limit " + limit1;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> PopLivCtry = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.country = rset.getString("country");
+                pop.countrypop = rset.getLong("countrypop");
+                pop.citypop = rset.getLong("citypop");
+                pop.noncitypop = rset.getLong("noncitypop");
+                pop.citypoppercent =rset.getDouble("citypoppercent");
+                pop.noncitypoppercent =rset.getDouble("noncitypoppercent");
+                PopLivCtry.add(pop);
+            }
+            return PopLivCtry;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of The population of people, people living in cities, and people not living in cities in each Country.
+     *
+     * @param PopLivCtry The list of The population of people, people living in cities, and people not living in cities in each Country to print.
+     */
+    public void printLivingPopCountry(ArrayList<City> PopLivCtry) {
+        // Check Population is not null
+        if (PopLivCtry == null)
+        {
+            System.out.println("No Population Information");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "The population of people, people living in cities, and people not living in cities in each Country."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-40s %30s %30s %30s %20s %20s", "Country", "Country Population", "City Population", "Non City Population", "City Population %", "Non City Population %"));
+        // Loop over all Retrieved Populations in the list
+        // Check if query returned values.
+        for (City pop : PopLivCtry) {
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-40s %30s %30s %30s %20s %20s", pop.country, pop.countrypop, pop.citypop, pop.noncitypop, pop.citypoppercent, pop.noncitypoppercent );
+            System.out.println(popCount);
+        }
+    }
 
 
 

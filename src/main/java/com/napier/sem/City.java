@@ -28,7 +28,7 @@ public class City {
     //Total City Population
     public long citypop;
 
-    //Total Non City Population
+    //Total Non-City Population
     public long noncitypop;
 
     // total Region Population
