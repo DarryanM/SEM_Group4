@@ -157,6 +157,18 @@ public class App {
         //Display Results of The population of people, people living in cities, and people not living in cities in each continent
         a.printLivingPopContinent(population26);
 
+        // Extract The population of people, people living in cities, and people not living in cities in each Region
+        ArrayList<City> PopLivReg = a.getLivingPopRegion(10);
+
+        //Display Results of The population of people, people living in cities, and people not living in cities in each Region
+        a.printLivingPopRegion(PopLivReg);
+
+        // Extract The population of people, people living in cities, and people not living in cities in each Country
+        ArrayList<City> PopLivCtry = a.getLivingPopCountry(10);
+
+        //Display Results of The population of people, people living in cities, and people not living in cities in each Country
+        a.printLivingPopCountry(PopLivCtry);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -1787,7 +1799,7 @@ public class App {
      * @return A list of The population of people, people living in cities, and people not living in cities in each Region or null if there is an error.
      */
 
-    public ArrayList<City> getLivingPopRegion(String region1) {
+    public ArrayList<City> getLivingPopRegion(int limit1) {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -1796,8 +1808,7 @@ public class App {
                     "SELECT reg1 as region, regionpop, citypop, (regionpop-citypop) as noncitypop, round((citypop/regionpop *100),2) as citypoppercent,  100-round((citypop/regionpop *100),2) as noncitypoppercent   "
                             + "FROM (select sum(city.population) as CityPop, country.region as reg1 from city join country on city.countrycode = country.code group by reg1) AS A "
                             + "Join (select sum(country.population) as regionpop, country.region as reg2 from country group by reg2) AS B "
-                            + "ON A.reg1 = B.reg2 "
-                            + "Where reg1 = '" + region1 + "'";
+                            + "ON A.reg1 = B.reg2 LIMIT " +limit1;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract Population information
