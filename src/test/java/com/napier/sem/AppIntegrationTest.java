@@ -447,4 +447,50 @@ public class AppIntegrationTest {
     void testGetLivingPopContinentFailure() {
         app.getLivingPopContinent(-6);
     }
+
+    //Integration test Report 24 - get the population of people, people living in cities, and people not living in cities in each Region.
+    @Test
+    void testGetLivingPopRegion()
+    {
+
+        ArrayList<City> PopLivReg = app.getLivingPopRegion(10);
+
+        City pop = app.getLivingPop2("Caribbean");
+        assertEquals(pop.region,"Caribbean");
+        assertEquals( pop.regionpop,38140000);
+        assertEquals(pop.citypop ,11067550);
+        assertEquals( pop.noncitypop,27072450);
+        assertEquals(pop.citypoppercent,29.02);
+        assertEquals(pop.noncitypoppercent,70.98);
+        app.getLivingPopRegion( 10);
+    }
+
+    @Test
+    void testGetLivingPopRegionFail(){
+        app.getLivingPopRegion(-10);
+    }
+
+    //Integration test Report 25 - get the population of people, people living in cities, and people not living in cities in each Country.
+    @Test
+    void testGetLivingPopCountry()
+    {
+
+        ArrayList<City> PopLivCtry = app.getLivingPopCountry(10);
+
+        City pop = app.getLivingPop3("Aruba");
+        assertEquals(pop.country,"Aruba");
+        assertEquals( pop.countrypop,103000);
+        assertEquals(pop.citypop ,29034);
+        assertEquals( pop.noncitypop,73966);
+        assertEquals(pop.citypoppercent,28.19);
+        assertEquals(pop.noncitypoppercent,71.81);
+        app.getLivingPopCountry( 10);
+    }
+
+    @Test
+    void testGetLivingPopCountryFail(){
+        app.getLivingPopCountry(-10);
+    }
+
+
 }

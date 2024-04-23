@@ -1785,16 +1785,9 @@ public class App {
             System.out.println(popCount);
         }
     }
-    /**
-     * Gets the The population of people, people living in cities, and people not living in cities in each continent..
-     *
-     * @return A list of The population of people, people living in cities, and people not living in cities in each continent or null if there is an error.
-     */
-
-
 
     /**
-     * Gets the population of people, people living in cities, and people not living in cities in each Region..
+     * Report 24 - get the population of people, people living in cities, and people not living in cities in each Region.
      *
      * @return A list of The population of people, people living in cities, and people not living in cities in each Region or null if there is an error.
      */
@@ -1860,7 +1853,7 @@ public class App {
     }
 
     /**
-     * Gets the population of people, people living in cities, and people not living in cities in each Region..
+     * Gets the population of people, people living in cities, and people not living in cities in each Country.
      *
      * @return A list of The population of people, people living in cities, and people not living in cities in each Region or null if there is an error.
      */
