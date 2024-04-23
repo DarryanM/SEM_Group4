@@ -181,7 +181,7 @@ public class AppIntegrationTest {
 
         app.getCityPopconti("Asia", 999999);
     }
-    //test for the catch
+    ////Test for all cities in a Continent for the catch
     @Test
     void testGetcityContiFail() {
         app.getCityPopconti("xyz", -10);
@@ -201,7 +201,7 @@ public class AppIntegrationTest {
 
         app.getCityPopregi("Eastern Asia", 999999);
     }
-        //test for the catch
+        //Test for all cities in a region for the catch
     @Test
     void testGetcityregionFail() {
         app.getCityPopregi("xyz", -10);
@@ -338,6 +338,51 @@ public class AppIntegrationTest {
         //Testing if SQL syntax incorrect Catch will run
         app.getAllCapCitiesWorld(-2);
     }
+
+
+
+    // Integration Test for all capital cities in a continent
+    @Test
+    void testGetAllCapContinent()
+    {
+        app.getAllCapCitiesContinent("Asia", 999999);
+        ArrayList<City> population21 = app.getAllCapCitiesContinent("Asia",999999);
+
+        City pop = app.getCapitalCity("CHN");
+        assertEquals(pop.population,7472000);
+        assertEquals(pop.name,"Peking");
+        assertEquals(pop.district,"Peking");
+        app.getAllCapCitiesContinent("Asia", 999999);
+    }
+
+    // Test for catch in all capital cities in a continent
+    @Test
+    void testGetcapitalcontiFail() {
+        app.getAllCapCitiesContinent("xyz", -10);
+    }
+
+
+    // Integration Test for all capital cities in a region
+    @Test
+    void testGetAllCapRegion()
+    {
+        app.getAllCapCitiesRegion("Eastern Asia", 999999);
+        ArrayList<City> population22 = app.getAllCapCitiesRegion("Eastern Asia",999999);
+
+        City pop = app.getCapitalCity("CHN");
+        assertEquals(pop.population,7472000);
+        assertEquals(pop.name,"Peking");
+        assertEquals(pop.district,"Peking");
+        app.getAllCapCitiesRegion("Eastern Asia",999999);
+    }
+
+    // Test for catch in all capital cities in a Region
+    @Test
+    void testGetcapitalRegionFail() {
+        app.getAllCapCitiesRegion("xyz", -10);
+    }
+
+
 
     // Test Report -20 The top N populated Capital Cities in the World where N is provided
     @Test
