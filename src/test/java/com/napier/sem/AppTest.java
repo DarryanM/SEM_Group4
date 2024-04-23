@@ -838,6 +838,76 @@ public class AppTest {
         population26.add(pop);
         app.printLivingPopContinent(population26);
     }
+    // TESTS FOR printLivingPopRegion
+    @Test
+    void printLivingPopRegionTestNull()
+    {
+        app.printLivingPopRegion(null);
+    }
 
+    @Test
+    void printLivingPopRegionNull()
+    {
+        ArrayList<City> LivingPopRegion = new ArrayList<City>();
+        LivingPopRegion.add(null);
+        app.printLivingPopRegion(LivingPopRegion);
+    }
+
+    @Test
+    void printLivingPopRegionTestEmpty()
+    {
+        ArrayList<City> LivingPopRegion = new ArrayList<City>();
+        app.printLivingPopRegion(LivingPopRegion);
+    }
+
+    @Test
+    void printLivingPopRegion() {
+        ArrayList<City> PopLivReg= new ArrayList<City>();
+        City pop = new City();
+        pop.region = "Caribbean";
+        pop.regionpop = 38140000;
+        pop.citypop = 11067550;
+        pop.noncitypop = 27072450;
+        pop.citypoppercent = 29.02;
+        pop.noncitypoppercent = 70.98;
+        PopLivReg.add(pop);
+        app.printLivingPopRegion(PopLivReg);
+    }
+
+    // TESTS FOR printLivingPopCountry
+    @Test
+    void printLivingPopCountryTestNull()
+    {
+        app.printLivingPopCountry(null);
+    }
+
+    @Test
+    void printLivingPopCountryNull()
+    {
+        ArrayList<City> LivingPopCountry = new ArrayList<City>();
+        LivingPopCountry.add(null);
+        app.printLivingPopCountry(LivingPopCountry);
+    }
+
+    @Test
+    void printLivingPopCountryTestEmpty()
+    {
+        ArrayList<City> LivingPopCountry = new ArrayList<City>();
+        app.printLivingPopCountry(LivingPopCountry);
+    }
+
+    @Test
+    void printLivingPopCountry() {
+        ArrayList<City> PopLivCtry= new ArrayList<City>();
+        City pop = new City();
+        pop.country = "Aruba";
+        pop.countrypop = 103000;
+        pop.citypop = 29034;
+        pop.noncitypop = 73966;
+        pop.citypoppercent =28.19;
+        pop.noncitypoppercent = 71.81;
+        PopLivCtry.add(pop);
+        app.printLivingPopCountry(PopLivCtry);
+    }
 
 }
