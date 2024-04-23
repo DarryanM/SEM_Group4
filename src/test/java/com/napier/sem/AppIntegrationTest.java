@@ -8,33 +8,31 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AppIntegrationTest
-{
+public class AppIntegrationTest {
     static App app;
 
     @BeforeAll
-    static void init()
-    {
+    static void init() {
         app = new App();
         app.connect("localhost:33070", 30000);
 
     }
+
     @Test
-    void testGetCountry()
-    {
-        Country pop = app.getCountry( "ABW");
+    void testGetCountry() {
+        Country pop = app.getCountry("ABW");
         assertEquals(pop.code, "ABW");
         assertEquals(pop.population, 103000);
         assertEquals(pop.name, "Aruba");
         assertEquals(pop.continent, "North America");
         assertEquals(pop.region, "Caribbean");
     }
+
     @Test
-    void testGetCity()
-    {
-        City pop = app.getCity( "KOR");
+    void testGetCity() {
+        City pop = app.getCity("KOR");
         assertEquals(pop.population, 9981619);
-        assertEquals(pop.countryCode,"KOR");
+        assertEquals(pop.countryCode, "KOR");
         assertEquals(pop.name, "Seoul");
         assertEquals(pop.district, "Seoul");
         assertEquals(pop.country, "South Korea");
@@ -42,8 +40,7 @@ public class AppIntegrationTest
 
     // Testing for All the countries in the world organised by largest population
     @Test
-    void testGetCountryPopulation()
-    {
+    void testGetCountryPopulation() {
         ArrayList<Country> population = app.getCountryPopulation();
 
         Country pop = app.getCountry("ABW");
@@ -57,8 +54,7 @@ public class AppIntegrationTest
 
     //Testing for All the countries in a continent organised by largest population
     @Test
-    void testGetContinentPopulation()
-    {
+    void testGetContinentPopulation() {
         ArrayList<Country> population2 = app.getContinentPopulation("North America");
 
         Country pop = app.getCountry("ABW");
@@ -72,8 +68,7 @@ public class AppIntegrationTest
 
     //Testing for All the countries in a Region organised by largest population
     @Test
-    void testGetRegionPopulation()
-    {
+    void testGetRegionPopulation() {
         ArrayList<Country> population3 = app.getRegionPopulation("Caribbean");
 
         Country pop = app.getCountry("ABW");
@@ -86,17 +81,15 @@ public class AppIntegrationTest
     }
 
 
-
     @Test
-    void testGetTopNCountryPopulation()
-    {
+    void testGetTopNCountryPopulation() {
         //Testing Query TopNCountryPopulation with variables
         ArrayList<Country> population = app.getTopNCountryPopulation(3);
 
         Country pop = app.getCountry("USA");
         assertEquals(pop.population, 278357000);
-        assertEquals(pop.code,"USA");
-        assertEquals(pop.capital,3813);
+        assertEquals(pop.code, "USA");
+        assertEquals(pop.capital, 3813);
         assertEquals(pop.name, "United States");
         assertEquals(pop.continent, "North America");
         assertEquals(pop.region, "North America");
@@ -107,44 +100,96 @@ public class AppIntegrationTest
     }
 
     @Test
-    void testGetTopNCountriesInContPopulation()
-    {
+    void testGetTopNCountriesInContPopulation() {
         //Testing Query TopNCountriesInContPopulation with variables
         ArrayList<Country> topNCountriesContPop = app.getTopNCountriesInContPopulation("North America", 3);
 
         Country pop = app.getCountry("USA");
         assertEquals(pop.population, 278357000);
-        assertEquals(pop.code,"USA");
-        assertEquals(pop.capital,3813);
+        assertEquals(pop.code, "USA");
+        assertEquals(pop.capital, 3813);
         assertEquals(pop.name, "United States");
         assertEquals(pop.continent, "North America");
         assertEquals(pop.region, "North America");
         app.getTopNCountriesInContPopulation("North America", 3);
 
         //Testing if SQL syntax incorrect Catch will run
-        app.getTopNCountriesInContPopulation("XYZ",-10);
+        app.getTopNCountriesInContPopulation("XYZ", -10);
     }
 
     @Test
-    void testGetTopNCountriesInRegPopulation()
-    {
+    void testGetTopNCountriesInRegPopulation() {
         //Testing Query TopNCountriesInRegPopulation with variables
         ArrayList<Country> topNCountriesRegPop = app.getTopNCountriesInRegPopulation("Seoul", 3);
 
         Country pop = app.getCountry("USA");
         assertEquals(pop.population, 278357000);
-        assertEquals(pop.code,"USA");
-        assertEquals(pop.capital,3813);
+        assertEquals(pop.code, "USA");
+        assertEquals(pop.capital, 3813);
         assertEquals(pop.name, "United States");
         assertEquals(pop.continent, "North America");
         assertEquals(pop.region, "North America");
         app.getTopNCountriesInRegPopulation("North America", 3);
 
         //Testing if SQL syntax incorrect Catch will run
-        app.getTopNCountriesInRegPopulation("XYZ",-10);
+        app.getTopNCountriesInRegPopulation("XYZ", -10);
     }
 
-    //Put Integration Tests above HERE
+    //Integration test for Report 7 - All the cities in the world organised by largest population to smallest.
+    @Test
+    void testGetCityPop7() {
+        ArrayList<City> cityPop7 = app.getCityPop();
+
+        City pop = app.getCity("KOR");
+        assertEquals(pop.population, 9981619);
+        assertEquals(pop.countryCode, "KOR");
+        assertEquals(pop.name, "Seoul");
+        assertEquals(pop.district, "Seoul");
+        assertEquals(pop.country, "South Korea");
+        app.getCityPop();
+    }
+
+    //Integration test for Report 8 - All the cities in a continent organised by largest population to smallest.
+    @Test
+    void testGetcityConti() {
+        ArrayList<City> cityPop8 = app.getCityPopconti("Asia", 999999);
+
+        City pop = app.getCity("KOR");
+        assertEquals(pop.population, 9981619);
+        assertEquals(pop.countryCode, "KOR");
+        assertEquals(pop.name, "Seoul");
+        assertEquals(pop.district, "Seoul");
+        assertEquals(pop.country, "South Korea");
+
+        app.getCityPopconti("Asia", 999999);
+    }
+    //test for the catch
+    @Test
+    void testGetcityContiFail() {
+        app.getCityPopconti("xyz", -10);
+    }
+
+    //Integration test for Report 9 - All the cities in a continent organised by largest population to smallest.
+    @Test
+    void testGetcityPop9() {
+        ArrayList<City> cityPop9 = app.getCityPopregi("Eastern Asia", 999999);
+
+        City pop = app.getCity("KOR");
+        assertEquals(pop.population, 9981619);
+        assertEquals(pop.countryCode, "KOR");
+        assertEquals(pop.name, "Seoul");
+        assertEquals(pop.district, "Seoul");
+        assertEquals(pop.country, "South Korea");
+
+        app.getCityPopregi("Eastern Asia", 999999);
+    }
+        //test for the catch
+    @Test
+    void testGetcityregionFail() {
+        app.getCityPopregi("xyz", -10);
+    }
+
+
 
     //Integration test for Report 10 - All the cities in a country organised by largest population to smallest.
     @Test
