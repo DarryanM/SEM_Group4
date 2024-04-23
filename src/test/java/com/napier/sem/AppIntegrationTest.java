@@ -278,5 +278,46 @@ public class AppIntegrationTest {
         app.getTopCityInCountry("South Korea", 3);
     }
 
+    // Test Report -20 The top N populated Capital Cities in the World where N is provided
+    @Test
+    void testGetTopNPopCapCitiesWorld()
+    {
+
+        ArrayList<City> population23 = app.getTopNPopCapCitiesWorld(5);
+
+        City pop = app.getCapitalCity("CHN");
+        assertEquals(pop.population,7472000);
+        assertEquals(pop.name,"Peking");
+        assertEquals(pop.country,"China");
+        app.getTopNPopCapCitiesWorld(5);
+    }
+
+    //Test For Report 21 Failure
+    @Test
+    void testGetTopNPopCapCitiesWorldFail()
+    {
+        app.getTopNPopCapCitiesWorld(-5);
+    }
+
+    // Test Report -21 The top N populated Capital Cities in the World where N is provided
+    @Test
+    void testGetTopNPopCapCitiesContinent()
+    {
+
+        ArrayList<City> population24 = app.getTopNPopCapCitiesContinent("Asia",5);
+
+        City pop = app.getCapitalCity("CHN");
+        assertEquals(pop.population,7472000);
+        assertEquals(pop.name,"Peking");
+        assertEquals(pop.country,"China");
+        app.getTopNPopCapCitiesContinent("Asia",5);
+    }
+
+    //Test For Report 21 Failure
+    @Test
+    void testGetTopNPopCapCitiesWorldContinent()
+    {
+        app.getTopNPopCapCitiesContinent("XYZ", -5);
+    }
 
 }

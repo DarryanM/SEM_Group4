@@ -21,4 +21,26 @@ public class City {
     public int row_num;
 
     public String region;
+
+    //Total Country Population
+    public long countrypop;
+
+    //Total City Population
+    public long citypop;
+
+    //Total Non City Population
+    public long noncitypop;
+
+    // total Region Population
+    public long regionpop;
+
+    //Total Continent Population
+    public long continentpop;
+
+    //Percentage of people in city
+    public double citypoppercent;
+
+    //Percentage of people not living in city
+    public double noncitypoppercent;
+
 }

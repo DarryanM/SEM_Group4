@@ -108,6 +108,18 @@ public class App {
         // Display district population results
         a.printTopCityInCountry(nCityTopCtry);
 
+        // Report 20 Extract All top N populated capital cities in the world where N is provided by the user
+        ArrayList<City> population23 = a.getTopNPopCapCitiesWorld(5);
+
+        //Display Results of top N populated capital cities in the world where N is provided by the user
+        a.printTopNPopCapCitiesWorld(population23);
+
+        // Report 21 Extract All top N populated capital cities in a Continent where N and Continent are provided by the user
+        ArrayList<City> population24 = a.getTopNPopCapCitiesContinent("Europe",5);
+
+        //Display Results of top N populated capital cities in a Continent where N and Continent were provided by the user
+        a.printTopNPopCapCitiesContinent(population24);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -1226,4 +1238,313 @@ public class App {
             return null;
         }
     }
+
+    /**
+     * Report#20 Gets the top N populated capital cities in the world where N is provided.
+     *
+     * @return A list of the top N populated cities in the world where N was provided  sorted in descending order, or null if there is an error.
+     */
+
+    public ArrayList<City> getTopNPopCapCitiesWorld(int Limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.name as name, country.name as country, city.population as population  "
+                            + "FROM city inner join country on city.id = country.capital "
+                            + "ORDER BY population DESC Limit " + Limit1;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> population23 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.name = rset.getString("name");
+                pop.country = rset.getString("country");
+                pop.population = rset.getInt("population");
+                population23.add(pop);
+            }
+            return population23;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Population details");
+            return null;
+        }
     }
+
+    /**
+     * Prints a list of the top N populated cities in a continent where N is provided.
+     *
+     * @param population23 The list of  the top N populated Capital cities in the world where N was provided to print.
+     */
+    public void printTopNPopCapCitiesWorld(ArrayList<City> population23) {
+        // Check Population is not null
+        if (population23 == null)
+        {
+            System.out.println("No Top Capital City Population");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "The Top N populated Capital cities in a continent where N was provided."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-40s %-40s %30s", "Name", "Country", "Population"));
+        // Loop over all Retrieved Populations in the list
+        // Check if query returned values.
+        for (City pop : population23) {
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-40s %-40s %30s", pop.name, pop.country, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
+    /**
+     * Report 21 Gets the top N populated Capital cities in a Continent where N and Continent are provided.
+     *
+     * @return A list of the top N populated Capital cities in a Continent where N and Continent were provided  sorted in descending order, or null if there is an error.
+     */
+
+    public ArrayList<City> getTopNPopCapCitiesContinent(String cont1, int Limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.name as name, country.name as country, city.population as population  "
+                            + "FROM city inner join country on city.id = country.capital "
+                            + "WHERE continent = '" + cont1 + "' "
+                            + "ORDER BY population desc Limit " + Limit1;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> population24 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.name = rset.getString("name");
+                pop.country = rset.getString("country");
+                pop.population = rset.getInt("population");
+                population24.add(pop);
+            }
+            return population24;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Capital City Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of the top N populated Capital cities in a Continent where N and Continent are provided.
+     *
+     * @param population24 The list of  the top N populated Capital cities in a Continent where N and continent were provided to print.
+     */
+    public void printTopNPopCapCitiesContinent(ArrayList<City> population24) {
+        // Check Population is not null
+        if (population24 == null)
+        {
+            System.out.println("No Top Capital City Population");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "The Top N populated Capital cities in a Continent where N and continent was provided."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-40s %-40s %30s", "Name", "Country", "Population"));
+        // Loop over all Retrieved Populations in the list
+        // Check if query returned values.
+        for (City pop : population24) {
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-40s %-40s %30s", pop.name, pop.country, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
+
+
+
+    // INTEGRATION TESTING QUERIES
+    //Inetegeration Test get City population information
+    public City getDistrict(String code2)
+    {
+        try
+        {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT ct.countryCode, c.name as Country, ct.name As  City, ct.district, ct.population, c.continent " +
+                            "from city as ct Join country as c ON ct.CountryCode = c.code  " +
+                            "WHERE ct.district = '" + code2 + "'";
+
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new City if valid.
+            // Check one is returned
+            if (rset.next())
+            {
+                City pop = new City();
+                pop.population = rset.getInt("population");
+                pop.name = rset.getString("city");
+                pop.district = rset.getString("district");
+                pop.countryCode = rset.getString("countryCode");
+                pop.country = rset.getString("Country");
+                pop.continent = rset.getString("Continent");
+                return pop;
+            }
+            else
+                return null;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get City details");
+            return null;
+        }
+    }
+
+
+    //For Integration Testing
+    public City getCapitalCity(String code1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "select city.name as name, country.name as country, district, city.population as population, country.continent, country.region "
+                            + "FROM city inner join country on city.id = country.capital "
+                            + "WHERE city.countrycode = '" + code1 + "'";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next()) {
+                City pop = new City();
+                pop.population = rset.getInt("population");
+                pop.continent = rset.getString("continent");
+                pop.name = rset.getString("name");
+                pop.region = rset.getString("region");
+                pop.district = rset.getString("district");
+                pop.country = rset.getString("country");
+                return pop;
+            } else
+                return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Capital Country details");
+            return null;
+        }
+    }
+
+    //integration test - get population of people within a continent who living in and out of cities
+    public City getLivingPop1(String contin1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT cont1 as continent, continentpop, citypop, (continentpop-citypop) as noncitypop, round((citypop/continentpop *100),2) as citypoppercent,  100-round((citypop/continentpop *100),2) as noncitypoppercent "
+                            + "FROM (select sum(city.population) as CityPop, country.continent as cont1 from city join country on city.countrycode = country.code group by cont1) AS A "
+                            + "Join (select sum(country.population) as continentpop, country.continent as cont2 from country group by country.continent) AS B "
+                            + "ON A.cont1 = B.cont2 "
+                            + "WHERE cont1 = '" + contin1 + "'";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next()) {
+                City pop = new City();
+                pop.continent = rset.getString("continent");
+                pop.continentpop = rset.getLong("continentpop");
+                pop.citypop = rset.getLong("citypop");
+                pop.noncitypop = rset.getLong("noncitypop");
+                pop.citypoppercent = rset.getDouble("citypoppercent");
+                pop.noncitypoppercent = rset.getDouble("noncitypoppercent");
+                return pop;
+            } else
+                return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country City and Non-City Population details");
+            return null;
+        }
+    }
+    //integration test - get population of people within a reagion who living in and out of cities
+    public City getLivingPop2(String region1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT reg1 as region, regionpop, citypop, (regionpop-citypop) as noncitypop, round((citypop/regionpop *100),2) as citypoppercent,  100-round((citypop/regionpop *100),2) as noncitypoppercent   "
+                            + "FROM (select sum(city.population) as CityPop, country.region as reg1 from city join country on city.countrycode = country.code group by reg1) AS A "
+                            + "Join (select sum(country.population) as regionpop, country.region as reg2 from country group by reg2) AS B "
+                            + "ON A.reg1 = B.reg2 "
+                            + "Where reg1 = '" + region1 + "'";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next()) {
+                City pop = new City();
+                pop.region = rset.getString("region");
+                pop.regionpop = rset.getLong("regionpop");
+                pop.citypop = rset.getLong("citypop");
+                pop.noncitypop = rset.getLong("noncitypop");
+                pop.citypoppercent = rset.getDouble("citypoppercent");
+                pop.noncitypoppercent = rset.getDouble("noncitypoppercent");
+                return pop;
+            } else
+                return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country City and Non-City Population details");
+            return null;
+        }
+    }
+
+    //integration test - get population of people within a country who living in and out of cities
+    public City getLivingPop3(String country1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT con1 as country, countrypop, citypop, (countrypop-citypop) as noncitypop, round((citypop/countrypop *100),2) as citypoppercent,  100-round((citypop/countrypop *100),2) as noncitypoppercent "
+                            + "FROM (select sum(city.population) as CityPop, country.name as con1 from city join country on city.countrycode = country.code group by con1) AS A "
+                            + "Join (select sum(country.population) as countrypop, country.name as con2 from country group by con2) AS B "
+                            + "ON A.con1 = B.con2 "
+                            + " WHERE con1 = '" + country1 +"'";
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Return new employee if valid.
+            // Check one is returned
+            if (rset.next()) {
+                City pop = new City();
+                pop.country = rset.getString("country");
+                pop.countrypop = rset.getLong("countrypop");
+                pop.citypop = rset.getLong("citypop");
+                pop.noncitypop = rset.getLong("noncitypop");
+                pop.citypoppercent = rset.getDouble("citypoppercent");
+                pop.noncitypoppercent = rset.getDouble("noncitypoppercent");
+                return pop;
+            } else
+                return null;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Country City and Non-City Population details");
+            return null;
+        }
+    }
+
+
+}
