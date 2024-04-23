@@ -768,6 +768,76 @@ public class AppTest {
         app.printTopNPopCapCitiesContinent(population24);
     }
 
+    //AppTests for Report 22 - The top N populated capital cities in a region where N is provided by the user.
+    @Test
+    void printTopNPopCapCitiesRegionNull()
+    {
+        app.printTopNPopCapCitiesRegion(null);
+    }
+
+    @Test
+    void printTopNPopCapCitiesRegionTestContainsNull()
+    {
+        ArrayList<City> population25 = new ArrayList<City>();
+        population25.add(null);
+        app.printTopNPopCapCitiesRegion(population25);
+    }
+
+    @Test
+    void printTopNPopCapCitiesRegionTestEmpty()
+    {
+        ArrayList<City> population25 = new ArrayList<City>();
+        app.printTopNPopCapCitiesRegion(population25);
+    }
+
+    @Test
+    void printTopNPopCapCitiesRegion()
+    {
+        ArrayList<City> population25 = new ArrayList<City>();
+        City pop = new City();
+        pop.population = 2256000;
+        pop.name = "La Habana";
+        pop.country = "Cuba";
+        population25.add(pop);
+        app.printTopNPopCapCitiesRegion(population25);
+    }
+
+    //AppTests for Report 23 - The population of people, people living in cities, and people not living in cities in each continent.
+    @Test
+    void printLivingPopContinentNull()
+    {
+        app.printLivingPopContinent(null);
+    }
+
+    @Test
+    void printLivingPopContinentTestContainsNull()
+    {
+        ArrayList<City> population26 = new ArrayList<City>();
+        population26.add(null);
+        app.printLivingPopContinent(population26);
+    }
+
+    @Test
+    void printLivingPopContinentTestEmpty()
+    {
+        ArrayList<City> population26 = new ArrayList<City>();
+        app.printLivingPopContinent(population26);
+    }
+
+    @Test
+    void printLivingPopContinent()
+    {
+        ArrayList<City> population26 = new ArrayList<City>();
+        City pop = new City();
+        pop.continent = "Europe";
+        pop.continentpop = 2256000;
+        pop.citypop = 100;
+        pop.noncitypop = 100;
+        pop.citypoppercent = 34.17;
+        pop.noncitypoppercent= 66.83;
+        population26.add(pop);
+        app.printLivingPopContinent(population26);
+    }
 
 
 }

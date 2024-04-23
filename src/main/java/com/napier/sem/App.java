@@ -145,6 +145,18 @@ public class App {
         //Display Results of top N populated capital cities in a Continent where N and Continent were provided by the user
         a.printTopNPopCapCitiesContinent(population24);
 
+        // Report 22 - Extract top N populated capital cities in a Region where N and Region are provided by the user
+        ArrayList<City> population25 = a.getTopNPopCapCitiesRegion("Caribbean",5);
+
+        //Display Results of top N populated capital cities in a Region where N and Region were provided by the user
+        a.printTopNPopCapCitiesRegion(population25);
+
+        //Report 23 - Extract The population of people, people living in cities, and people not living in cities in each continent
+        ArrayList<City> population26 = a.getLivingPopContinent(5);
+
+        //Display Results of The population of people, people living in cities, and people not living in cities in each continent
+        a.printLivingPopContinent(population26);
+
         // Disconnect from database
         a.disconnect();
     }
@@ -1639,6 +1651,129 @@ public class App {
             System.out.println(popCount);
         }
     }
+
+    /**
+     * Report 22 - The top N populated capital cities in a region where N is provided by the user.*/
+    public ArrayList<City> getTopNPopCapCitiesRegion(String reg1, int Limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT city.name as name , country.name as country, city.population as population  "
+                            + "FROM city inner join country on city.id = country.capital "
+                            + "WHERE region = '" + reg1 + "' "
+                            + "ORDER BY population desc Limit " + Limit1;
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> population25 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.name = rset.getString("name");
+                pop.country = rset.getString("country");
+                pop.population = rset.getInt("population");
+                population25.add(pop);
+            }
+            return population25;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Capital City Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of the top N populated Capital cities in a Region where N and Region are provided.
+     *
+     * @param population25 The list of  the top N populated Capital cities in a Region where N and Region were provided to print.
+     */
+    public void printTopNPopCapCitiesRegion(ArrayList<City> population25) {
+        // Check Population is not null
+        if (population25 == null)
+        {
+            System.out.println("No Top Capital City Population");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "The Top N populated Capital cities in a Region where N and Region was provided."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-40s %-40s %30s", "Name", "Country", "Population"));
+        // Loop over all Retrieved Populations in the list
+        // Check if query returned values.
+        for (City pop : population25) {
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-40s %-40s %30s", pop.name, pop.country, pop.population);
+            System.out.println(popCount);
+        }
+    }
+
+    /**Report 23  - The population of people, people living in cities, and people not living in cities in each continent.
+    */
+    public ArrayList<City> getLivingPopContinent(int limit1) {
+        try {
+            // Create an SQL statement
+            Statement stmt = con.createStatement();
+            // Create string for SQL statement
+            String strSelect =
+                    "SELECT cont1 as continent, continentpop, citypop, (continentpop-citypop) as noncitypop, round((citypop/continentpop *100),2) as citypoppercent,  100-round((citypop/continentpop *100),2) as noncitypoppercent "
+                            + "FROM (select sum(city.population) as CityPop, country.continent as cont1 from city join country on city.countrycode = country.code group by cont1) AS A "
+                            + "Join (select sum(country.population) as continentpop, country.continent as cont2 from country group by country.continent) AS B "
+                            + "ON A.cont1 = B.cont2 LIMIT " + limit1;
+
+            // Execute SQL statement
+            ResultSet rset = stmt.executeQuery(strSelect);
+            // Extract Population information
+            ArrayList<City> population26 = new ArrayList<City>();
+            while (rset.next()) {
+                City pop = new City();
+                pop.continent = rset.getString("continent");
+                pop.continentpop = rset.getLong("continentpop");
+                pop.citypop = rset.getLong("citypop");
+                pop.noncitypop = rset.getLong("noncitypop");
+                pop.citypoppercent =rset.getDouble("citypoppercent");
+                pop.noncitypoppercent =rset.getDouble("noncitypoppercent");
+                population26.add(pop);
+            }
+            return population26;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed to get Continent City Population details");
+            return null;
+        }
+    }
+
+    /**
+     * Prints a list of The population of people, people living in cities, and people not living in cities in each continent.
+     *
+     * @param population26 The list of The population of people, people living in cities, and people not living in cities in each continent to print.
+     */
+    public void printLivingPopContinent(ArrayList<City> population26) {
+        // Check Population is not null
+        if (population26 == null)
+        {
+            System.out.println("No Population Information");
+            return;
+        }
+        // Print header
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s ", "The population of people, people living in cities, and people not living in cities in each continent."));
+        System.out.println(String.format("%-20s ", " "));
+        System.out.println(String.format("%-20s %30s %30s %30s %20s %20s", "Continents", "Continent Population", "Continent City Population", "Non Continent City Population", "City Population %", "Non City Population %"));
+        // Loop over all Retrieved Populations in the list
+        // Check if query returned values.
+        for (City pop : population26) {
+            if (pop == null)
+                continue;
+
+            String popCount = String.format("%-20s %30s %30s %30s %20s %20s", pop.continent, pop.continentpop, pop.citypop, pop.noncitypop, pop.citypoppercent, pop.noncitypoppercent );
+            System.out.println(popCount);
+        }
+    }
+
 
 
 

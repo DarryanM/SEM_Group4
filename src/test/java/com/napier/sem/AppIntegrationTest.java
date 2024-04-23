@@ -98,8 +98,7 @@ public class AppIntegrationTest {
 
     //Test For Report 4 Failure
     @Test
-    void testGetTopNCountryPopulationFail()
-    {
+    void testGetTopNCountryPopulationFail() {
         //Testing if SQL syntax incorrect Catch will run
         app.getTopNCountryPopulation(-1);
     }
@@ -121,8 +120,7 @@ public class AppIntegrationTest {
 
     //Test For Report 5 Failure
     @Test
-    void testGetTopNCountriesInContPopulationFail()
-    {
+    void testGetTopNCountriesInContPopulationFail() {
         //Testing if SQL syntax incorrect Catch will run
         app.getTopNCountriesInContPopulation("XYZ", -10);
     }
@@ -145,8 +143,7 @@ public class AppIntegrationTest {
 
     //Test For Report 6 Failure
     @Test
-    void testGetTopNCountriesInRegPopulationFail()
-    {
+    void testGetTopNCountriesInRegPopulationFail() {
 
         //Testing if SQL syntax incorrect Catch will run
         app.getTopNCountriesInRegPopulation("XYZ", -10);
@@ -181,6 +178,7 @@ public class AppIntegrationTest {
 
         app.getCityPopconti("Asia", 999999);
     }
+
     ////Test for all cities in a Continent for the catch
     @Test
     void testGetcityContiFail() {
@@ -201,12 +199,12 @@ public class AppIntegrationTest {
 
         app.getCityPopregi("Eastern Asia", 999999);
     }
-        //Test for all cities in a region for the catch
+
+    //Test for all cities in a region for the catch
     @Test
     void testGetcityregionFail() {
         app.getCityPopregi("xyz", -10);
     }
-
 
 
     //Integration test for Report 10 - All the cities in a country organised by largest population to smallest.
@@ -241,8 +239,7 @@ public class AppIntegrationTest {
 
     //Integration test for Report 12 - The top N populated cities in the world where N is provided by the user.
     @Test
-    void getTopNCityPopWorld12()
-    {
+    void getTopNCityPopWorld12() {
         app.getTopNCityPopWorld12(-10);
         ArrayList<City> topNCityPopWorld12 = app.getTopNCityPopWorld12(5);
         City pop = app.getCity("Ind");
@@ -256,102 +253,94 @@ public class AppIntegrationTest {
 
     //Integration test Report 13 - The top N populated cities in a continent where N is provided by the user.
     @Test
-    void testgetTopCityInContinent()
-    {
-        app.getTopCityInContinent("xyz",-10);
-        ArrayList<City> nCityTopCont = app.getTopCityInContinent("Asia",3);
+    void testgetTopCityInContinent() {
+        app.getTopCityInContinent("xyz", -10);
+        ArrayList<City> nCityTopCont = app.getTopCityInContinent("Asia", 3);
 
         City pop = app.getCity("KOR");
-        assertEquals(pop.population,9981619);
-        assertEquals(pop.name,"Seoul");
+        assertEquals(pop.population, 9981619);
+        assertEquals(pop.name, "Seoul");
         assertEquals(pop.country, "South Korea");
-        assertEquals(pop.district,"Seoul");
+        assertEquals(pop.district, "Seoul");
         app.getTopCityInContinent("Asia", 3);
     }
+
     @Test
-    void testgetTopCityInRegion()
-    {
-        app.getTopCityInRegion("xyz",-10);
-        ArrayList<City> nCityTopReg = app.getTopCityInRegion("Eastern Asia",3);
+    void testgetTopCityInRegion() {
+        app.getTopCityInRegion("xyz", -10);
+        ArrayList<City> nCityTopReg = app.getTopCityInRegion("Eastern Asia", 3);
 
         City pop = app.getCity("KOR");
-        assertEquals(pop.population,9981619);
-        assertEquals(pop.name,"Seoul");
+        assertEquals(pop.population, 9981619);
+        assertEquals(pop.name, "Seoul");
         assertEquals(pop.country, "South Korea");
-        assertEquals(pop.district,"Seoul");
+        assertEquals(pop.district, "Seoul");
         app.getTopCityInRegion("Eastern Asia", 3);
     }
 
     @Test
-    void testgetTopCityInCountry()
-    {
-        app.getTopCityInCountry("xyz",-10);
-        ArrayList<City> nCityTopCtry = app.getTopCityInCountry("South Korea",3);
+    void testgetTopCityInCountry() {
+        app.getTopCityInCountry("xyz", -10);
+        ArrayList<City> nCityTopCtry = app.getTopCityInCountry("South Korea", 3);
 
         City pop = app.getCity("KOR");
-        assertEquals(pop.population,9981619);
-        assertEquals(pop.name,"Seoul");
+        assertEquals(pop.population, 9981619);
+        assertEquals(pop.name, "Seoul");
         assertEquals(pop.country, "South Korea");
-        assertEquals(pop.district,"Seoul");
+        assertEquals(pop.district, "Seoul");
         app.getTopCityInCountry("South Korea", 3);
     }
 
     // Test Report 16 the top N populated cities in a district where N is provided by the user.
     @Test
-    void testgetTopNPopCitiesDistrict()
-    {
-        ArrayList<City> population19 = app.getTopNPopCitiesDistrict("South Korea",3);
+    void testgetTopNPopCitiesDistrict() {
+        ArrayList<City> population19 = app.getTopNPopCitiesDistrict("South Korea", 3);
 
         City pop = app.getDistrict("Seoul");
-        assertEquals(pop.population,9981619);
-        assertEquals(pop.name,"Seoul");
+        assertEquals(pop.population, 9981619);
+        assertEquals(pop.name, "Seoul");
         assertEquals(pop.country, "South Korea");
-        assertEquals(pop.district,"Seoul");
+        assertEquals(pop.district, "Seoul");
         app.getTopNPopCitiesDistrict("Seoul", 3);
     }
 
     //Test For Report 16 Failure
     @Test
-    void testgetTopNPopCitiesDistrictFail()
-    {
+    void testgetTopNPopCitiesDistrictFail() {
         //Testing if SQL syntax incorrect Catch will run
-        app.getTopNPopCitiesDistrict("xyz",-2);
+        app.getTopNPopCitiesDistrict("xyz", -2);
     }
 
     // Test Report 17 all the capital cities in the world organised by largest population to smallest
     @Test
-    void testGetAllCapCitiesWorld()
-    {
+    void testGetAllCapCitiesWorld() {
         ArrayList<City> population20 = app.getAllCapCitiesWorld(99999);
 
         City pop = app.getCapitalCity("CHN");
-        assertEquals(pop.population,7472000);
-        assertEquals(pop.name,"Peking");
-        assertEquals(pop.district,"Peking");
+        assertEquals(pop.population, 7472000);
+        assertEquals(pop.name, "Peking");
+        assertEquals(pop.district, "Peking");
         app.getAllCapCitiesWorld(99999);
     }
 
     //Test For Report 17 Failure
     @Test
-    void testGetAllCapCitiesWorldFail()
-    {
+    void testGetAllCapCitiesWorldFail() {
         //Testing if SQL syntax incorrect Catch will run
         app.getAllCapCitiesWorld(-2);
     }
 
 
-
     // Integration Test for all capital cities in a continent
     @Test
-    void testGetAllCapContinent()
-    {
+    void testGetAllCapContinent() {
         app.getAllCapCitiesContinent("Asia", 999999);
-        ArrayList<City> population21 = app.getAllCapCitiesContinent("Asia",999999);
+        ArrayList<City> population21 = app.getAllCapCitiesContinent("Asia", 999999);
 
         City pop = app.getCapitalCity("CHN");
-        assertEquals(pop.population,7472000);
-        assertEquals(pop.name,"Peking");
-        assertEquals(pop.district,"Peking");
+        assertEquals(pop.population, 7472000);
+        assertEquals(pop.name, "Peking");
+        assertEquals(pop.district, "Peking");
         app.getAllCapCitiesContinent("Asia", 999999);
     }
 
@@ -364,16 +353,15 @@ public class AppIntegrationTest {
 
     // Integration Test for all capital cities in a region
     @Test
-    void testGetAllCapRegion()
-    {
+    void testGetAllCapRegion() {
         app.getAllCapCitiesRegion("Eastern Asia", 999999);
-        ArrayList<City> population22 = app.getAllCapCitiesRegion("Eastern Asia",999999);
+        ArrayList<City> population22 = app.getAllCapCitiesRegion("Eastern Asia", 999999);
 
         City pop = app.getCapitalCity("CHN");
-        assertEquals(pop.population,7472000);
-        assertEquals(pop.name,"Peking");
-        assertEquals(pop.district,"Peking");
-        app.getAllCapCitiesRegion("Eastern Asia",999999);
+        assertEquals(pop.population, 7472000);
+        assertEquals(pop.name, "Peking");
+        assertEquals(pop.district, "Peking");
+        app.getAllCapCitiesRegion("Eastern Asia", 999999);
     }
 
     // Test for catch in all capital cities in a Region
@@ -383,47 +371,80 @@ public class AppIntegrationTest {
     }
 
 
-
     // Test Report -20 The top N populated Capital Cities in the World where N is provided
     @Test
-    void testGetTopNPopCapCitiesWorld()
-    {
+    void testGetTopNPopCapCitiesWorld() {
 
         ArrayList<City> population23 = app.getTopNPopCapCitiesWorld(5);
 
         City pop = app.getCapitalCity("CHN");
-        assertEquals(pop.population,7472000);
-        assertEquals(pop.name,"Peking");
-        assertEquals(pop.country,"China");
+        assertEquals(pop.population, 7472000);
+        assertEquals(pop.name, "Peking");
+        assertEquals(pop.country, "China");
         app.getTopNPopCapCitiesWorld(5);
     }
 
     //Test For Report 21 Failure
     @Test
-    void testGetTopNPopCapCitiesWorldFail()
-    {
+    void testGetTopNPopCapCitiesWorldFail() {
         app.getTopNPopCapCitiesWorld(-5);
     }
 
     // Test Report -21 The top N populated Capital Cities in the World where N is provided
     @Test
-    void testGetTopNPopCapCitiesContinent()
-    {
+    void testGetTopNPopCapCitiesContinent() {
 
-        ArrayList<City> population24 = app.getTopNPopCapCitiesContinent("Asia",5);
+        ArrayList<City> population24 = app.getTopNPopCapCitiesContinent("Asia", 5);
 
         City pop = app.getCapitalCity("CHN");
-        assertEquals(pop.population,7472000);
-        assertEquals(pop.name,"Peking");
-        assertEquals(pop.country,"China");
-        app.getTopNPopCapCitiesContinent("Asia",5);
+        assertEquals(pop.population, 7472000);
+        assertEquals(pop.name, "Peking");
+        assertEquals(pop.country, "China");
+        app.getTopNPopCapCitiesContinent("Asia", 5);
     }
 
     //Test For Report 21 Failure
     @Test
-    void testGetTopNPopCapCitiesWorldContinent()
-    {
+    void testGetTopNPopCapCitiesWorldContinent() {
         app.getTopNPopCapCitiesContinent("XYZ", -5);
     }
 
+    //Test for Report 22 - The top N populated capital cities in a region where N is provided by the user.
+    @Test
+    void testgetTopNPopCapCitiesRegion() {
+        ArrayList<City> population23 = app.getTopNPopCapCitiesRegion("Eastern Asia", 5);
+
+        City pop = app.getCapitalCity("CHN");
+        assertEquals(pop.population, 7472000);
+        assertEquals(pop.name, "Peking");
+        assertEquals(pop.country, "China");
+        app.getTopNPopCapCitiesRegion("Eastern Asia", 5);
+    }
+
+    //Test for Report 22 Failure
+    @Test
+    void testgetTopNPopCapCitiesRegionFailure() {
+        app.getTopNPopCapCitiesRegion("Eastern Asia", -5);
+    }
+
+    //Test for Report 23 - The population of people, people living in cities, and people not living in cities in each continent.
+    @Test
+    void testGetLivingPopContinent() {
+        ArrayList<City> population26 = app.getLivingPopContinent(5);
+
+        City pop = app.getLivingPop1("North America");
+        assertEquals(pop.continent, "North America");
+        assertEquals(pop.continentpop, 482993000);
+        assertEquals(pop.citypop, 168250381);
+        assertEquals(pop.noncitypop, 314742619);
+        assertEquals(pop.citypoppercent, 34.83);
+        assertEquals(pop.noncitypoppercent, 65.17);
+        app.getLivingPopContinent(5);
+    }
+
+    //Test for Report 23 Failure
+    @Test
+    void testGetLivingPopContinentFailure() {
+        app.getLivingPopContinent(-6);
+    }
 }
