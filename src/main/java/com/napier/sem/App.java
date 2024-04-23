@@ -15,19 +15,19 @@ public class App {
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        // Extract Country Population
-        ArrayList<Country> population = a.getCountryPopulation();
+        // Report 1 Extract Country Population
+        ArrayList<Country> population = a.getCountryPopulation(999999);
 
         //Display Results
         a.printCountryPopulation(population);
 
-        // Extract Continent Population
+        // Report 2 Extract Continent Population
         ArrayList<Country> population2 = a.getContinentPopulation("Europe");
 
         //Display Continent Population Results
         a.printContinentPopulation(population2);
 
-        // Extract Region Population
+        // Report 3 Extract Region Population
         ArrayList<Country> population3 = a.getRegionPopulation("Caribbean");
 
         //Display Region Population Results
@@ -120,13 +120,13 @@ public class App {
         //Display Results of All the capital cities in the world organised by largest population to smallest
         a.printAllCapCitiesWorld(population20);
 
-        // Extract All the capital cities in a Continent organised by largest population to smallest
+        // Report 18 Extract All the capital cities in a Continent organised by largest population to smallest
         ArrayList<City> population21 = a.getAllCapCitiesContinent("Europe", 99999);
 
         //Display Results of All the capital cities in a Continent organised by largest population to smallest
         a.printAllCapCitiesContinent(population21);
 
-        // Extract All the capital cities in a Region organised by largest population to smallest
+        // Report 19 Extract All the capital cities in a Region organised by largest population to smallest
         ArrayList<City> population22 = a.getAllCapCitiesRegion("Caribbean", 999999);
 
         //Display Results of All the capital cities in a Region organised by largest population to smallest
@@ -239,7 +239,7 @@ public class App {
      *
      * @return A list of all Population sorted in descending order, or null if there is an error.
      */
-    public ArrayList<Country> getCountryPopulation() {
+    public ArrayList<Country> getCountryPopulation(int limit1) {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -1587,7 +1587,7 @@ public class App {
         }
         // Print header
         System.out.println(String.format("%-20s ", " "));
-        System.out.println(String.format("%-20s ", "The Top N populated Capital cities in a continent where N was provided."));
+        System.out.println(String.format("%-20s ", "The Top N populated Capital cities in the world where N was provided."));
         System.out.println(String.format("%-20s ", " "));
         System.out.println(String.format("%-40s %-40s %30s", "Name", "Country", "Population"));
         // Loop over all Retrieved Populations in the list

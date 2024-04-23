@@ -41,7 +41,7 @@ public class AppIntegrationTest {
     // Testing for All the countries in the world organised by largest population
     @Test
     void testGetCountryPopulation() {
-        ArrayList<Country> population = app.getCountryPopulation();
+        ArrayList<Country> population = app.getCountryPopulation(2);
 
         Country pop = app.getCountry("ABW");
         assertEquals(pop.code, "ABW");
@@ -49,7 +49,7 @@ public class AppIntegrationTest {
         assertEquals(pop.name, "Aruba");
         assertEquals(pop.continent, "North America");
         assertEquals(pop.region, "Caribbean");
-        app.getCountryPopulation();
+        app.getCountryPopulation(2);
     }
 
     //Testing for All the countries in a continent organised by largest population
