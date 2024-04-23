@@ -120,9 +120,6 @@ public class App {
         //Display Results of All the capital cities in the world organised by largest population to smallest
         a.printAllCapCitiesWorld(population20);
 
-        // Report 20 Extract All top N populated capital cities in the world where N is provided by the user
-        ArrayList<City> population23 = a.getTopNPopCapCitiesWorld(5);
-
         // Extract All the capital cities in a Continent organised by largest population to smallest
         ArrayList<City> population21 = a.getAllCapCitiesContinent("Europe", 99999);
 
@@ -135,7 +132,11 @@ public class App {
         //Display Results of All the capital cities in a Region organised by largest population to smallest
         a.printAllCapCitiesRegion(population22);
 
-        //Display Results of top N populated capital cities in the world where N is provided by the user
+
+        // Report 20 Extract All top N populated capital cities in the world where N is provided by the user
+        ArrayList<City> population23 = a.getTopNPopCapCitiesWorld(5);
+
+         //Display Results of top N populated capital cities in the world where N is provided by the user
         a.printTopNPopCapCitiesWorld(population23);
 
         // Report 21 Extract All top N populated capital cities in a Continent where N and Continent are provided by the user
