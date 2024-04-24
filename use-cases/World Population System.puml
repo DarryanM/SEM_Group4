@@ -74,10 +74,23 @@ rectangle "World Population" {
     usecase UC22 as "Top N Populated
         Capital Cities
         in a Region"
+     usecase UC23 as "Population of people,
+        people living in cities,
+        and people not living in cities
+        in each continent"
+     usecase UC24 as "Population of people,
+        people living in cities,
+        and people not living in cities
+        in each Region"
+     usecase UC25 as "Population of people,
+        people living in cities,
+        and people not living in cities
+        in each country"
 
-    usecase UCa as "Print Report"
-    usecase UCb as "Print Report"
-    usecase UCc as "Print Report"
+
+    usecase UCa as "Print World Report"
+    usecase UCb as "Print Continent Report"
+    usecase UCc as "Print Region Report"
 
 
 
@@ -124,6 +137,14 @@ rectangle "World Population" {
     UC6 ..> UCc : include
     UC14 ..> UCc : include
     UC22 ..> UCc : include
+
+    UC1 ..> UC25 : include
+    UC2 ..> UC23 : include
+    UC3 ..> UC24 : include
+
+    UC23 ..> UCb : include
+    UC24 ..> UCc : include
+    UC25 ..> UCa : include
 
 
 
