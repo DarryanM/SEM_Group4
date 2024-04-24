@@ -52,10 +52,17 @@ public class AppIntegrationTest {
         app.getCountryPopulation(2);
     }
 
-    //Testing for All the countries in a continent organised by largest population
+    //Testing For Report Query Failure
+    @Test
+    void testGetCountryPopulationFail() {
+        ArrayList<Country> population = app.getCountryPopulation(-2);
+    }
+
+
+        //Testing for All the countries in a continent organised by largest population
     @Test
     void testGetContinentPopulation() {
-        ArrayList<Country> population2 = app.getContinentPopulation("North America");
+        ArrayList<Country> population2 = app.getContinentPopulation("North America",2);
 
         Country pop = app.getCountry("ABW");
         assertEquals(pop.code, "ABW");
@@ -63,13 +70,19 @@ public class AppIntegrationTest {
         assertEquals(pop.name, "Aruba");
         assertEquals(pop.continent, "North America");
         assertEquals(pop.region, "Caribbean");
-        app.getContinentPopulation("North America");
+        app.getContinentPopulation("North America",2);
+    }
+
+    //Testing For Report Query Failure
+    @Test
+    void testGetContinentPopulationFail() {
+        ArrayList<Country> population2 = app.getContinentPopulation("XYZ",-2);
     }
 
     //Testing for All the countries in a Region organised by largest population
     @Test
     void testGetRegionPopulation() {
-        ArrayList<Country> population3 = app.getRegionPopulation("Caribbean");
+        ArrayList<Country> population3 = app.getRegionPopulation("Caribbean", 2);
 
         Country pop = app.getCountry("ABW");
         assertEquals(pop.code, "ABW");
@@ -77,7 +90,13 @@ public class AppIntegrationTest {
         assertEquals(pop.name, "Aruba");
         assertEquals(pop.continent, "North America");
         assertEquals(pop.region, "Caribbean");
-        app.getRegionPopulation("Caribbean");
+        app.getRegionPopulation("Caribbean",2);
+    }
+
+    //Testing For Report Query Failure
+    @Test
+    void testGetRegionPopulationFail() {
+        ArrayList<Country> population3 = app.getRegionPopulation("XYZ",-2);
     }
 
 
@@ -153,7 +172,7 @@ public class AppIntegrationTest {
     //Integration test for Report 7 - All the cities in the world organised by largest population to smallest.
     @Test
     void testGetCityPop7() {
-        ArrayList<City> cityPop7 = app.getCityPop();
+        ArrayList<City> cityPop7 = app.getCityPop(999999);
 
         City pop = app.getCity("KOR");
         assertEquals(pop.population, 9981619);
@@ -161,7 +180,13 @@ public class AppIntegrationTest {
         assertEquals(pop.name, "Seoul");
         assertEquals(pop.district, "Seoul");
         assertEquals(pop.country, "South Korea");
-        app.getCityPop();
+        app.getCityPop(999999);
+    }
+
+    ////Test for all cities in a Continent for the catch
+    @Test
+    void testGetCityPop7Fail() {
+        app.getCityPop(-3);
     }
 
     //Integration test for Report 8 - All the cities in a continent organised by largest population to smallest.
@@ -179,7 +204,7 @@ public class AppIntegrationTest {
         app.getCityPopconti("Asia", 999999);
     }
 
-    ////Test for all cities in a Continent for the catch
+    //Test for all cities in a Continent for the catch
     @Test
     void testGetcityContiFail() {
         app.getCityPopconti("xyz", -10);
