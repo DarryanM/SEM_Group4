@@ -22,13 +22,13 @@ public class App {
         a.printCountryPopulation(population);
 
         // Report 2 Extract All the countries in a continent organised by largest population to smallest
-        ArrayList<Country> population2 = a.getContinentPopulation("Europe");
+        ArrayList<Country> population2 = a.getContinentPopulation("Europe",100);
 
         //Display Continent Population Results
         a.printContinentPopulation(population2);
 
         // Report 3 All the countries in a region organised by largest population to smallest
-        ArrayList<Country> population3 = a.getRegionPopulation("Caribbean");
+        ArrayList<Country> population3 = a.getRegionPopulation("Caribbean",100);
 
         //Display Region Population Results
         a.printRegionPopulation(population3);
@@ -52,7 +52,7 @@ public class App {
         a.printTopNCountriesInRegPopulation(topNCountriesRegPop);
 
         // Report 7 Extract All the cities in the world organised by largest population to smallest
-        ArrayList<City> cityPop7 = a.getCityPop();
+        ArrayList<City> cityPop7 = a.getCityPop(999999);
 
         //Display Results for City population in the world
         a.printCityPop(cityPop7);
@@ -305,7 +305,7 @@ public class App {
      *
      * @return A list of all countries in continenet population sorted in descending order, or null if there is an error.
      */
-    public ArrayList<Country> getContinentPopulation(String cont1) {
+    public ArrayList<Country> getContinentPopulation(String cont1, int limit1) {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -313,7 +313,7 @@ public class App {
             String strSelect =
                     "SELECT code, name, continent, region, capital, population "
                             + "FROM country "
-                            + "WHERE continent = '" + cont1 + "' ORDER BY population DESC";
+                            + "WHERE continent = '" + cont1 + "' ORDER BY population DESC LIMIT "+ limit1;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract Population information
@@ -371,7 +371,7 @@ public class App {
      * @return A list of the population of all countries in a Region  sorted in descending order, or null if there is an error.
      */
 
-    public ArrayList<Country> getRegionPopulation(String reg1) {
+    public ArrayList<Country> getRegionPopulation(String reg1, int limit1) {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -379,7 +379,7 @@ public class App {
             String strSelect =
                     "SELECT code, name, continent, region, capital, population "
                             + "FROM country "
-                            + "WHERE region = '" + reg1 + "'Order By population DESC";
+                            + "WHERE region = '" + reg1 + "'Order By population DESC LIMIT "+ limit1;
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Extract Population information
@@ -645,7 +645,7 @@ public class App {
      *
      * @return A list of all cities in the world Population sorted in descending order, or null if there is an error.
      */
-    public ArrayList<City> getCityPop() {
+    public ArrayList<City> getCityPop(int limit1) {
         try {
             // Create an SQL statement
             Statement stmt = con.createStatement();
@@ -653,7 +653,7 @@ public class App {
             String strSelect =
                     "SELECT ct.countryCode, c.name as Country, ct.name As  City, ct.district, ct.population " +
                             "from city as ct Join country as c ON ct.CountryCode = c.code  " +
-                            "Order by ct.population desc ";
+                            "Order by ct.population desc LIMIT "+ limit1;
 
 
             // Execute SQL statement
